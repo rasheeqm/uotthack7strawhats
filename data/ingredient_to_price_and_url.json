@@ -1,0 +1,129 @@
+{
+    "ingredients": [
+      {
+        "name": "Sea salt",
+        "price": 2.99,
+        "url": "https://www.walmart.ca/en/search?q=sea+salt"
+      },
+      {
+        "name": "Black pepper",
+        "price": 3.49,
+        "url": "https://www.walmart.ca/en/search?q=black+pepper"
+      },
+      {
+        "name": "Onion",
+        "price": 0.99,
+        "url": "https://www.walmart.ca/en/search?q=onion"
+      },
+      {
+        "name": "Garlic",
+        "price": 1.29,
+        "url": "https://www.walmart.ca/en/search?q=garlic"
+      },
+      {
+        "name": "Olive oil",
+        "price": 7.99,
+        "url": "https://www.walmart.ca/en/search?q=olive+oil"
+      },
+      {
+        "name": "Wheat flour",
+        "price": 2.49,
+        "url": "https://www.walmart.ca/en/search?q=wheat+flour"
+      },
+      {
+        "name": "Eggs",
+        "price": 3.99,
+        "url": "https://www.walmart.ca/en/search?q=eggs"
+      },
+      {
+        "name": "Carrots",
+        "price": 1.49,
+        "url": "https://www.walmart.ca/en/search?q=carrots"
+      },
+      {
+        "name": "Tomatoes",
+        "price": 2.99,
+        "url": "https://www.walmart.ca/en/search?q=tomatoes"
+      },
+      {
+        "name": "Chicken breast",
+        "price": 5.99,
+        "url": "https://www.walmart.ca/en/search?q=chicken+breast"
+      },
+      {
+        "name": "Ground beef",
+        "price": 4.99,
+        "url": "https://www.walmart.ca/en/search?q=ground+beef"
+      },
+      {
+        "name": "Pasta",
+        "price": 1.79,
+        "url": "https://www.walmart.ca/en/search?q=pasta"
+      },
+      {
+        "name": "Rice",
+        "price": 2.29,
+        "url": "https://www.walmart.ca/en/search?q=rice"
+      },
+      {
+        "name": "Butter",
+        "price": 3.49,
+        "url": "https://www.walmart.ca/en/search?q=butter"
+      },
+      {
+        "name": "Milk",
+        "price": 2.79,
+        "url": "https://www.walmart.ca/en/search?q=milk"
+      },
+      {
+        "name": "Cheese",
+        "price": 4.49,
+        "url": "https://www.walmart.ca/en/search?q=cheese"
+      },
+      {
+        "name": "Potatoes",
+        "price": 3.99,
+        "url": "https://www.walmart.ca/en/search?q=potatoes"
+      },
+      {
+        "name": "Lemon",
+        "price": 0.69,
+        "url": "https://www.walmart.ca/en/search?q=lemon"
+      },
+      {
+        "name": "Broccoli",
+        "price": 1.99,
+        "url": "https://www.walmart.ca/en/search?q=broccoli"
+      },
+      {
+        "name": "Spinach",
+        "price": 2.49,
+        "url": "https://www.walmart.ca/en/search?q=spinach"
+      },
+      {
+        "name": "Bacon",
+        "price": 4.99,
+        "url": "https://www.walmart.ca/en/search?q=bacon"
+      },
+      {
+        "name": "Greek yogurt",
+        "price": 3.99,
+        "url": "https://www.walmart.ca/en/search?q=greek+yogurt"
+      },
+      {
+        "name": "Honey",
+        "price": 5.49,
+        "url": "https://www.walmart.ca/en/search?q=honey"
+      },
+      {
+        "name": "Almonds",
+        "price": 6.99,
+        "url": "https://www.walmart.ca/en/search?q=almonds"
+      },
+      {
+        "name": "Canned tomatoes",
+        "price": 1.59,
+        "url": "https://www.walmart.ca/en/search?q=canned+tomatoes"
+      }
+    ]
+  }
