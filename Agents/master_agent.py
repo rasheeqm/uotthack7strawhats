@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal, List
 from langchain_core.messages import BaseMessage, HumanMessage
 from langchain_anthropic import ChatAnthropic
 from langgraph.prebuilt import create_react_agent
@@ -9,12 +9,26 @@ import json
 import os
 import getpass
 from langchain_openai import ChatOpenAI
+from langchain_core.tools import tool
+from langgraph.graph import StateGraph, START
 
 # Initialize OpenAI API key
 if not os.environ.get("OPENAI_API_KEY"):
     os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter your OpenAI API key: ")
 
 llm = ChatOpenAI(model="gpt-4", temperature=0)
+
+class UserProfile(BaseModel):
+    age: int
+    sex: str
+    height: float  # in cm
+    weight: float  # in kg
+    diet_preference: List[str]
+    allergies: List[str]
+    activity_level: str
+    goal: str
+    medical_conditions: List[str]
+    budget: float
 
 # File handling functions
 def extract_json_from_response(content: str) -> str:
@@ -53,57 +67,83 @@ def load_ingredients_data():
     with open('data/ingredient_to_price_and_url.json', 'r') as f:
         return json.load(f)
 
-# Grocery List Generator Agent
-grocery_list_prompt = """You are a grocery list generator. Create a list of grocery items with quantities.
-The quantities MUST include units (e.g., "2 lbs", "1 gallon", "500g", "3 pieces", etc).
-The output must be valid JSON with this structure: 
+def calculate_caloric_needs(profile: UserProfile) -> float:
+    """Calculate estimated daily caloric needs based on user profile"""
+    # Basic BMR calculation using Harris-Benedict equation
+    if profile.sex.lower() == "male":
+        bmr = 88.362 + (13.397 * profile.weight) + (4.799 * profile.height) - (5.677 * profile.age)
+    else:
+        bmr = 447.593 + (9.247 * profile.weight) + (3.098 * profile.height) - (4.330 * profile.age)
+    
+    # Activity level multipliers
+    activity_multipliers = {
+        "sedentary": 1.2,
+        "light": 1.375,
+        "moderate": 1.55,
+        "very_active": 1.725,
+        "extra_active": 1.9
+    }
+    
+    activity_factor = activity_multipliers.get(profile.activity_level.lower(), 1.2)
+    total_calories = bmr * activity_factor
+    
+    # Adjust based on goal
+    if profile.goal.lower() == "weight_loss":
+        total_calories *= 0.8
+    elif profile.goal.lower() == "weight_gain":
+        total_calories *= 1.2
+    
+    return round(total_calories)
+
+def create_grocery_prompt(profile: UserProfile) -> str:
+    calories = calculate_caloric_needs(profile)
+    
+    json_structure = '''
 {
-    "items": [{"name": "item_name", "quantity": quantity}],
+    "items": [
+        {
+            "name": "item_name",
+            "quantity": "quantity_with_unit"
+        }
+    ],
     "budget": budget_amount
-}"""
+}
+'''
+    
+    return f"""You are a personalized grocery list generator. Create a list of grocery items with quantities for one week based on the following user profile:
 
-grocery_list_agent = create_react_agent(
-    llm,
-    tools=[],
-    state_modifier=grocery_list_prompt
-)
+REMEMBER:
+- Age: {profile.age} years
+- Sex: {profile.sex}
+- Height: {profile.height} cm
+- Weight: {profile.weight} kg
+- Diet Preferences: {', '.join(profile.diet_preference)}
+- Allergies: {', '.join(profile.allergies)}
+- Activity Level: {profile.activity_level}
+- Goal: {profile.goal}
+- Medical Conditions: {', '.join(profile.medical_conditions)}
+- Estimated Daily Caloric Needs: {calories} calories
+- Weekly Budget: ${profile.budget}
 
-def grocery_list_node(state: MessagesState) -> Command[Literal["price_checker"]]:
-    result = grocery_list_agent.invoke(state)
-    
-    try:
-        content = result["messages"][-1].content
-        cleaned_content = extract_json_from_response(content)
-        grocery_list = json.loads(cleaned_content)
-        print("Parsed grocery list:", json.dumps(grocery_list, indent=2))
-        safe_write_json('agent1_output.json', grocery_list)
-        
-    except Exception as e:
-        print(f"Error in grocery list generation: {e}")
-        return Command(update={"messages": result["messages"]}, goto="price_checker")
-    
-    result["messages"][-1] = HumanMessage(
-        content=result["messages"][-1].content,
-        name="grocery_list_generator"
-    )
-    
-    return Command(
-        update={"messages": result["messages"]},
-        goto="price_checker"
-    )
+REQUIREMENTS:
+1. Ensure NO items from the allergens list are included
+2. Follow the dietary preferences strictly
+3. Consider medical conditions when selecting items
+4. Plan for {calories} calories per day
+5. All quantities MUST include units (e.g., "2 lbs", "1 gallon", "500g", "3 pieces")
+6. Stay within the weekly budget of ${profile.budget}
+
+The output must be valid JSON with this structure:
+{json_structure}"""
 
 # Price Checker Tool
-from langchain_core.tools import tool
-
 @tool
 def find_cheapest():
     """Read the latest grocery list and find prices for items"""
     try:
         print("Reading from agent1_output.json and ingredient data...")
         
-        with open('agent1_output.json', 'r') as f:
-            grocery_list = json.load(f)
-        
+        grocery_list = safe_read_json('agent1_output.json', {"items": [], "budget": 0})
         ingredients_data = load_ingredients_data()
         ingredients_dict = {item['name'].lower(): item 
                           for item in ingredients_data.get('ingredients', [])}
@@ -151,6 +191,31 @@ def find_cheapest():
     except Exception as e:
         print(f"Error in find_cheapest: {str(e)}")
         return {"error": str(e)}
+# Grocery List Node
+def grocery_list_node(state: MessagesState) -> Command[Literal["price_checker"]]:
+    """Process grocery list generation with user profile considerations"""
+    result = grocery_list_agent.invoke(state)
+    
+    try:
+        content = result["messages"][-1].content
+        cleaned_content = extract_json_from_response(content)
+        grocery_list = json.loads(cleaned_content)
+        print("Parsed grocery list:", json.dumps(grocery_list, indent=2))
+        safe_write_json('agent1_output.json', grocery_list)
+        
+    except Exception as e:
+        print(f"Error in grocery list generation: {e}")
+        return Command(update={"messages": result["messages"]}, goto="price_checker")
+    
+    result["messages"][-1] = HumanMessage(
+        content=result["messages"][-1].content,
+        name="grocery_list_generator"
+    )
+    
+    return Command(
+        update={"messages": result["messages"]},
+        goto="price_checker"
+    )
 
 # Price Checker Agent
 price_checker_agent = create_react_agent(
@@ -168,68 +233,171 @@ def price_checker_node(state: MessagesState) -> MessagesState:
     return result
 
 def route_by_budget(state: MessagesState) -> Literal["grocery_list_generator", "end"]:
-    """Route based on budget comparison"""
+    """Route based on budget comparison. Simply ends if under budget, suggests replacements if over."""
     try:
         prices_data = safe_read_json('item_prices.json')
-        total_price = prices_data.get('total_price', 0)
-        budget = prices_data.get('budget', 0)
+        
+        # Clean and convert price values
+        def clean_price(price_str):
+            if isinstance(price_str, (int, float)):
+                return float(price_str)
+            if isinstance(price_str, str):
+                cleaned = ''.join(char for char in price_str if char.isdigit() or char == '.')
+                return float(cleaned) if cleaned else 0.0
+            return 0.0
+        
+        # Ensure values are float type
+        total_price = clean_price(prices_data.get('total_price', 0))
+        budget = clean_price(prices_data.get('budget', 0))
         budget_threshold = budget * 1.10
         
-        if total_price > budget_threshold:
-            # Find most expensive item for suggestion
-            items = prices_data.get('items', [])
-            valid_items = [item for item in items if item.get('price_per_unit') is not None]
-            if valid_items:
-                most_expensive = max(valid_items, key=lambda x: x['price_per_unit'])
-                state.messages.append(
-                    HumanMessage(
-                        content=f"The total price ${total_price:.2f} is over budget threshold "
-                               f"(${budget_threshold:.2f}). Please replace {most_expensive['name']} "
-                               f"(${most_expensive['price_per_unit']:.2f}/unit) with a cheaper alternative.",
-                        name="budget_router"
-                    )
+        # If under budget (+10% buffer), just end
+        if total_price <= budget_threshold:
+            return "end"
+        
+        # Over budget - find most expensive item and suggest replacement
+        items = prices_data.get('items', [])
+        valid_items = []
+        for item in items:
+            try:
+                price_per_unit = clean_price(item.get('price_per_unit'))
+                if price_per_unit > 0:
+                    item['price_per_unit'] = price_per_unit
+                    valid_items.append(item)
+            except (TypeError, ValueError):
+                continue
+                
+        if valid_items:
+            most_expensive = max(valid_items, key=lambda x: x['price_per_unit'])
+            if 'messages' not in state:
+                state['messages'] = []
+            state['messages'].append(
+                HumanMessage(
+                    content=f"The total price ${total_price:.2f} is over budget threshold "
+                           f"(${budget_threshold:.2f}). Please replace {most_expensive['name']} "
+                           f"(${most_expensive['price_per_unit']:.2f}/unit) with a cheaper alternative.",
+                    name="budget_router"
                 )
-            return "grocery_list_generator"
-        return "end"
+            )
+        return "grocery_list_generator"
+            
     except Exception as e:
         print(f"Error in route_by_budget: {e}")
         return "end"
 
-# Define the Graph
-from langgraph.graph import StateGraph, START
-
-workflow = StateGraph(MessagesState)
-
-# Add nodes
-workflow.add_node("grocery_list_generator", grocery_list_node)
-workflow.add_node("price_checker", price_checker_node)
-
-# Add edges with conditional routing
-workflow.add_edge(START, "grocery_list_generator")
-workflow.add_edge("grocery_list_generator", "price_checker")
-workflow.add_conditional_edges(
-    "price_checker",
-    route_by_budget,
-    {
-        "grocery_list_generator": "grocery_list_generator",
-        "end": END
-    }
-)
-
-# Compile the graph
-graph = workflow.compile()
-
-def run_grocery_workflow(budget: float):
-    """Run the grocery list workflow with specified budget"""
+def run_grocery_workflow(profile: UserProfile):
+    """Run the grocery list workflow with user profile"""
     initialize_files()
+    
+    # Create grocery list agent with profile-based prompt
+    global grocery_list_agent
+    grocery_list_agent = create_react_agent(
+        llm,
+        tools=[],
+        state_modifier=create_grocery_prompt(profile)
+    )
     
     initial_state = {
         "messages": [
             HumanMessage(
-                content=f"Generate a grocery list for a single person for one week based on a budget of ${budget}."
+                content=f"Generate a personalized grocery list based on the provided profile and requirements."
             )
         ]
     }
+    
+    # Initialize the graph
+    workflow = StateGraph(MessagesState)
+
+    # Add nodes
+    workflow.add_node("grocery_list_generator", grocery_list_node)
+    workflow.add_node("price_checker", price_checker_node)
+
+    # Add edges with conditional routing
+    workflow.add_edge(START, "grocery_list_generator")
+    workflow.add_edge("grocery_list_generator", "price_checker")
+    workflow.add_conditional_edges(
+        "price_checker",
+        route_by_budget,
+        {
+            "grocery_list_generator": "grocery_list_generator",
+            "end": END
+        }
+    )
+
+    # Compile the graph
+    graph = workflow.compile()
+    
+    events = graph.stream(
+        initial_state,
+        {"recursion_limit": 5},
+    )
+    
+    for event in events:
+        step_type = event.get("type", "")
+        if step_type == "start":
+            print("\n=== Starting New Workflow ===")
+        elif step_type == "end":
+            print("\n=== Workflow Complete ===")
+            try:
+                final_prices = safe_read_json('item_prices.json')
+                print("\nFinal Results:")
+                print(f"Total Price: ${final_prices.get('total_price', 0):.2f}")
+                print(f"Budget: ${final_prices.get('budget', 0):.2f}")
+            except Exception as e:
+                print(f"Error reading final results: {e}")
+        else:
+            print("\n--- Step Details ---")
+            if "messages" in event:
+                print("\nMessages:")
+                for msg in event["messages"][-1:]:
+                    print(f"{msg.name if hasattr(msg, 'name') else 'Unknown'}: {msg.content[:200]}...")
+            for key, value in event.items():
+                if key != "messages":
+                    print(f"{key}: {value}")
+        print("-" * 50)
+
+
+def run_grocery_workflow(profile: UserProfile):
+    """Run the grocery list workflow with user profile"""
+    initialize_files()
+    
+    # Create grocery list agent with profile-based prompt
+    global grocery_list_agent
+    grocery_list_agent = create_react_agent(
+        llm,
+        tools=[],
+        state_modifier=create_grocery_prompt(profile)
+    )
+    
+    initial_state = {
+        "messages": [
+            HumanMessage(
+                content=f"Generate a personalized grocery list based on the provided profile and requirements."
+            )
+        ]
+    }
+    
+    # Initialize the graph
+    workflow = StateGraph(MessagesState)
+
+    # Add nodes
+    workflow.add_node("grocery_list_generator", grocery_list_node)
+    workflow.add_node("price_checker", price_checker_node)
+
+    # Add edges with conditional routing
+    workflow.add_edge(START, "grocery_list_generator")
+    workflow.add_edge("grocery_list_generator", "price_checker")
+    workflow.add_conditional_edges(
+        "price_checker",
+        route_by_budget,
+        {
+            "grocery_list_generator": "grocery_list_generator",
+            "end": END
+        }
+    )
+
+    # Compile the graph
+    graph = workflow.compile()
     
     events = graph.stream(
         initial_state,
@@ -261,4 +429,18 @@ def run_grocery_workflow(budget: float):
         print("-" * 50)
 
 if __name__ == "__main__":
-    run_grocery_workflow(100.0)
+    # Example usage
+    user_profile = UserProfile(
+        age=30,
+        sex="female",
+        height=165,  # cm
+        weight=65,   # kg
+        diet_preference=["vegetarian"],
+        allergies=["peanuts", "shellfish"],
+        activity_level="moderate",
+        goal="weight_loss",
+        medical_conditions=["none"],
+        budget=20.0
+    )
+    
+    run_grocery_workflow(user_profile)
