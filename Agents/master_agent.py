@@ -9,21 +9,22 @@ import json
 import os
 import getpass
 from langchain_openai import ChatOpenAI
+
+# Initialize OpenAI API key
 if not os.environ.get("OPENAI_API_KEY"):
     os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter your OpenAI API key: ")
 
-llm = ChatOpenAI(model="gpt-4o", temperature=0)
-# File handling functions
+llm = ChatOpenAI(model="gpt-4", temperature=0)
 
+# File handling functions
 def extract_json_from_response(content: str) -> str:
     """Extract JSON from markdown code blocks or plain text"""
-    # If content is wrapped in ```json ``` blocks
     if content.startswith('```json\n') and content.endswith('\n```'):
-        return content[7:-4]  # Remove ```json\n and \n```
-    # If content is wrapped in ``` ``` blocks
+        return content[7:-4]
     elif content.startswith('```\n') and content.endswith('\n```'):
-        return content[4:-4]  # Remove ```\n and \n```
-    return content  # Return as is if no code blocks
+        return content[4:-4]
+    return content
+
 def ensure_file_exists(filename: str, default_content: dict = None):
     """Create file if it doesn't exist"""
     if not os.path.exists(filename):
@@ -52,17 +53,9 @@ def load_ingredients_data():
     with open('data/ingredient_to_price_and_url.json', 'r') as f:
         return json.load(f)
 
-def save_prices(prices):
-    with open('item_prices.json', 'w') as f:
-        json.dump(prices, f, indent=2)
-
-def get_next_node(last_message: BaseMessage, goto: str):
-    if "FINAL ANSWER" in last_message.content:
-        return END
-    return goto
-
 # Grocery List Generator Agent
-grocery_list_prompt = """You are a grocery list generator. Create a list of grocery items with quantities.The quantities MUST include units (e.g., "2 lbs", "1 gallon", "500g", "3 pieces", etc).
+grocery_list_prompt = """You are a grocery list generator. Create a list of grocery items with quantities.
+The quantities MUST include units (e.g., "2 lbs", "1 gallon", "500g", "3 pieces", etc).
 The output must be valid JSON with this structure: 
 {
     "items": [{"name": "item_name", "quantity": quantity}],
@@ -71,40 +64,24 @@ The output must be valid JSON with this structure:
 
 grocery_list_agent = create_react_agent(
     llm,
-    tools=[],  # No tools needed for initial list generation
+    tools=[],
     state_modifier=grocery_list_prompt
 )
 
-def grocery_list_node(
-    state: MessagesState,
-) -> Command[Literal["price_checker", END]]:
+def grocery_list_node(state: MessagesState) -> Command[Literal["price_checker"]]:
     result = grocery_list_agent.invoke(state)
     
     try:
-        # Extract content from the AI message
         content = result["messages"][-1].content
-        # Clean up the content by removing markdown code blocks
         cleaned_content = extract_json_from_response(content)
-        
-        # Parse the JSON
         grocery_list = json.loads(cleaned_content)
-        
-        # Debug print
         print("Parsed grocery list:", json.dumps(grocery_list, indent=2))
-        
-        # Save to file
         safe_write_json('agent1_output.json', grocery_list)
         
-    except json.JSONDecodeError as e:
-        print(f"Error: Invalid JSON format in grocery list - {e}")
-        print(f"Attempted to parse content: {content}")
-        return Command(update={"messages": result["messages"]}, goto=END)
     except Exception as e:
         print(f"Error in grocery list generation: {e}")
-        print(f"Content received: {content}")
-        return Command(update={"messages": result["messages"]}, goto=END)
+        return Command(update={"messages": result["messages"]}, goto="price_checker")
     
-    goto = get_next_node(result["messages"][-1], "price_checker")
     result["messages"][-1] = HumanMessage(
         content=result["messages"][-1].content,
         name="grocery_list_generator"
@@ -112,7 +89,7 @@ def grocery_list_node(
     
     return Command(
         update={"messages": result["messages"]},
-        goto=goto
+        goto="price_checker"
     )
 
 # Price Checker Tool
@@ -122,21 +99,30 @@ from langchain_core.tools import tool
 def find_cheapest():
     """Read the latest grocery list and find prices for items"""
     try:
+        print("Reading from agent1_output.json and ingredient data...")
+        
         with open('agent1_output.json', 'r') as f:
             grocery_list = json.load(f)
         
         ingredients_data = load_ingredients_data()
         ingredients_dict = {item['name'].lower(): item 
-                          for item in ingredients_data['ingredients']}
+                          for item in ingredients_data.get('ingredients', [])}
         
         results = []
         total_price = 0
         
-        for item in grocery_list['items']:
+        for item in grocery_list.get('items', []):
             item_name = item['name'].lower()
+            
             if item_name in ingredients_dict:
                 item_data = ingredients_dict[item_name]
-                item_total = item_data['price'] * item['quantity']
+                quantity = item['quantity']
+                if isinstance(quantity, str):
+                    numeric_part = ''.join(filter(str.isdigit, quantity))
+                    quantity = float(numeric_part) if numeric_part else 1
+                
+                item_total = item_data['price']
+                
                 results.append({
                     'name': item['name'],
                     'quantity': item['quantity'],
@@ -157,11 +143,13 @@ def find_cheapest():
         output_data = {
             'items': results,
             'total_price': total_price,
-            'budget': grocery_list['budget']
+            'budget': grocery_list.get('budget', 0)
         }
-        save_prices(output_data)
+        
+        safe_write_json('item_prices.json', output_data)
         return output_data
     except Exception as e:
+        print(f"Error in find_cheapest: {str(e)}")
         return {"error": str(e)}
 
 # Price Checker Agent
@@ -171,106 +159,70 @@ price_checker_agent = create_react_agent(
     state_modifier="You check prices and suggest substitutions if over budget."
 )
 
-def check_budget_condition(state: MessagesState) -> Literal["grocery_list_generator", "END"]:
-    """
-    Determines the next node based on budget comparison
-    """
-    try:
-        prices_data = safe_read_json('item_prices.json')
-        if not prices_data:
-            print("Warning: No price data found")
-            return END
-            
-        total_price = prices_data.get('total_price', 0)
-        budget = prices_data.get('budget', 0)
-        
-        if total_price > budget + 5:
-            items = prices_data.get('items', [])
-            if not items:
-                return END
-                
-            # Find most expensive item
-            valid_items = [item for item in items if item.get('price_per_unit') is not None]
-            if not valid_items:
-                return END
-                
-            most_expensive = max(
-                valid_items,
-                key=lambda x: x['price_per_unit']
-            )
-            
-            # Add suggestion context to state
-            state.messages.append(
-                HumanMessage(
-                    content=f"The current list is over budget by ${total_price - budget:.2f}. "
-                           f"Please substitute {most_expensive['name']} "
-                           f"(${most_expensive['price_per_unit']}/unit) with a cheaper alternative.",
-                    name="budget_checker"
-                )
-            )
-            return "grocery_list_generator"
-        return END
-    except Exception as e:
-        print(f"Error in budget check: {e}")
-        return END
-
-def price_checker_node(
-    state: MessagesState
-) -> Command[Literal["grocery_list_generator", END]]:
+def price_checker_node(state: MessagesState) -> MessagesState:
     result = price_checker_agent.invoke(state)
-    
+    result["messages"][-1] = HumanMessage(
+        content=result["messages"][-1].content,
+        name="price_checker"
+    )
+    return result
+
+def route_by_budget(state: MessagesState) -> Literal["grocery_list_generator", "end"]:
+    """Route based on budget comparison"""
     try:
         prices_data = safe_read_json('item_prices.json')
         total_price = prices_data.get('total_price', 0)
         budget = prices_data.get('budget', 0)
+        budget_threshold = budget * 1.10
         
-        result["messages"][-1] = HumanMessage(
-            content=result["messages"][-1].content,
-            name="price_checker"
-        )
-        
-        # Determine next node based on budget
-        if total_price > budget + 5:
-            return Command(
-                update={"messages": result["messages"]},
-                goto="grocery_list_generator"
-            )
-        else:
-            return Command(
-                update={"messages": result["messages"]},
-                goto=END
-            )
-            
+        if total_price > budget_threshold:
+            # Find most expensive item for suggestion
+            items = prices_data.get('items', [])
+            valid_items = [item for item in items if item.get('price_per_unit') is not None]
+            if valid_items:
+                most_expensive = max(valid_items, key=lambda x: x['price_per_unit'])
+                state.messages.append(
+                    HumanMessage(
+                        content=f"The total price ${total_price:.2f} is over budget threshold "
+                               f"(${budget_threshold:.2f}). Please replace {most_expensive['name']} "
+                               f"(${most_expensive['price_per_unit']:.2f}/unit) with a cheaper alternative.",
+                        name="budget_router"
+                    )
+                )
+            return "grocery_list_generator"
+        return "end"
     except Exception as e:
-        print(f"Error in price checker: {e}")
-        return Command(
-            update={"messages": result["messages"]},
-            goto=END
-        )
-
+        print(f"Error in route_by_budget: {e}")
+        return "end"
 
 # Define the Graph
 from langgraph.graph import StateGraph, START
 
 workflow = StateGraph(MessagesState)
 
+# Add nodes
 workflow.add_node("grocery_list_generator", grocery_list_node)
 workflow.add_node("price_checker", price_checker_node)
 
-# Add edges
+# Add edges with conditional routing
 workflow.add_edge(START, "grocery_list_generator")
 workflow.add_edge("grocery_list_generator", "price_checker")
-workflow.add_edge("price_checker", "grocery_list_generator")
-workflow.add_edge("price_checker", END)
+workflow.add_conditional_edges(
+    "price_checker",
+    route_by_budget,
+    {
+        "grocery_list_generator": "grocery_list_generator",
+        "end": END
+    }
+)
 
 # Compile the graph
 graph = workflow.compile()
 
 def run_grocery_workflow(budget: float):
-    # Initialize files
+    """Run the grocery list workflow with specified budget"""
     initialize_files()
     
-    # Create initial state with budget
     initial_state = {
         "messages": [
             HumanMessage(
@@ -309,4 +261,4 @@ def run_grocery_workflow(budget: float):
         print("-" * 50)
 
 if __name__ == "__main__":
-    run_grocery_workflow(50.0)
+    run_grocery_workflow(100.0)
