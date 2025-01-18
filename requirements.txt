@@ -1,1 +1,9 @@
-
+sentence_transformers
+chromadb
+fastapi
+uvicorn
+motor
+bcrypt
+python-jose
+passlib
+python-multipart
