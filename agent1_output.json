@@ -1,0 +1,61 @@
+{
+  "items": [
+    {
+      "name": "rice",
+      "quantity": "2 lbs"
+    },
+    {
+      "name": "chicken breast",
+      "quantity": "1.5 lbs"
+    },
+    {
+      "name": "eggs",
+      "quantity": "12 pieces"
+    },
+    {
+      "name": "milk",
+      "quantity": "1 gallon"
+    },
+    {
+      "name": "bread",
+      "quantity": "1 loaf"
+    },
+    {
+      "name": "apples",
+      "quantity": "6 pieces"
+    },
+    {
+      "name": "carrots",
+      "quantity": "1 lb"
+    },
+    {
+      "name": "potatoes",
+      "quantity": "2 lbs"
+    },
+    {
+      "name": "pasta",
+      "quantity": "1 lb"
+    },
+    {
+      "name": "canned tomatoes",
+      "quantity": "2 cans"
+    },
+    {
+      "name": "cheese",
+      "quantity": "0.5 lb"
+    },
+    {
+      "name": "lettuce",
+      "quantity": "1 head"
+    },
+    {
+      "name": "peanut butter",
+      "quantity": "1 jar"
+    },
+    {
+      "name": "oatmeal",
+      "quantity": "1 lb"
+    }
+  ],
+  "budget": 50.0
+}
