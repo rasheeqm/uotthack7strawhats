@@ -1,4 +1,5 @@
 import argparse
+import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -8,6 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 import chromedriver_autoinstaller
 from bs4 import BeautifulSoup
+
 
 def locate_search_bar(driver):
     """
@@ -28,6 +30,7 @@ def locate_search_bar(driver):
 
     return search_box
 
+
 def extract_results(driver):
     """
     Extract search results using BeautifulSoup.
@@ -44,15 +47,22 @@ def extract_results(driver):
         unit_size = card.select_one(".unitSize").text.strip() if card.select_one(".unitSize") else "N/A"
         unit_price = card.select_one(".unitPrice").text.strip() if card.select_one(".unitPrice") else "N/A"
 
+        # Remove unwanted characters from unit price for sorting
+        numeric_unit_price = float(unit_price.split("/")[0].replace("$", "").strip()) if "/" in unit_price else float(
+            "inf"
+        )
+
         results.append({
             "title": title,
             "subtitle": subtitle,
             "prices": prices,
             "unit_size": unit_size,
-            "unit_price": unit_price
+            "unit_price": unit_price,
+            "numeric_unit_price": numeric_unit_price,
         })
 
     return results
+
 
 def search_grocery_tracker(store_type_value, specific_store_value, search_term):
     """
@@ -109,6 +119,7 @@ def search_grocery_tracker(store_type_value, specific_store_value, search_term):
         print("Search results loaded.")
 
         # Extract and print search results
+        # Extract results
         results = extract_results(driver)
         for idx, result in enumerate(results, start=1):
             print(f"Product {idx}:")
@@ -119,11 +130,24 @@ def search_grocery_tracker(store_type_value, specific_store_value, search_term):
             print(f"  Unit Price: {result['unit_price']}")
             print("-" * 50)
 
+        # Find the cheapest product by numeric unit price
+        if results:
+            cheapest_product = min(results, key=lambda x: x["numeric_unit_price"])
+            print(f"Cheapest product: {cheapest_product['title']} - {cheapest_product['unit_price']}")
+
+            # Save to a JSON file
+            with open("../data/search_to_cheapest_ingredient.json", "w") as f:
+                json.dump(cheapest_product, f, indent=4)
+            print("Cheapest product written to search_to_cheapest_ingredient.json")
+        else:
+            print("No results found to determine the cheapest product.")
+
     except Exception as e:
         print(f"An error occurred: {e}")
 
     finally:
         driver.quit()
+
 
 if __name__ == "__main__":
     # Parse command-line arguments
