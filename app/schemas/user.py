@@ -6,7 +6,7 @@ class User(BaseModel):
     username: str = Field(..., min_length=3, max_length=50)
     email: str = Field(..., pattern=r"^\S+@\S+\.\S+$")
     password: str = Field(..., min_length=6)
-    age: int = Field(..., min=12, max=110)
+    age: int = Field(..., ge=12, le=110)
     sex: Literal[
         "Male",
         "Female",
