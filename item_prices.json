@@ -1,1 +1,139 @@
-{"items": [], "total_price": 0, "budget": 0}
+{
+  "items": [
+    {
+      "name": "Chicken breast",
+      "quantity": "2 lbs",
+      "price_per_unit": 5.99,
+      "total_price": 5.99,
+      "url": "https://www.walmart.ca/en/search?q=chicken+breast"
+    },
+    {
+      "name": "Brown rice",
+      "quantity": "1 lb",
+      "price_per_unit": null,
+      "total_price": null,
+      "url": null
+    },
+    {
+      "name": "Broccoli",
+      "quantity": "1 lb",
+      "price_per_unit": 1.99,
+      "total_price": 1.99,
+      "url": "https://www.walmart.ca/en/search?q=broccoli"
+    },
+    {
+      "name": "Carrots",
+      "quantity": "1 lb",
+      "price_per_unit": 1.49,
+      "total_price": 1.49,
+      "url": "https://www.walmart.ca/en/search?q=carrots"
+    },
+    {
+      "name": "Bananas",
+      "quantity": "6 pieces",
+      "price_per_unit": null,
+      "total_price": null,
+      "url": null
+    },
+    {
+      "name": "Apples",
+      "quantity": "6 pieces",
+      "price_per_unit": null,
+      "total_price": null,
+      "url": null
+    },
+    {
+      "name": "Almond milk",
+      "quantity": "1 gallon",
+      "price_per_unit": null,
+      "total_price": null,
+      "url": null
+    },
+    {
+      "name": "Eggs",
+      "quantity": "1 dozen",
+      "price_per_unit": 3.99,
+      "total_price": 3.99,
+      "url": "https://www.walmart.ca/en/search?q=eggs"
+    },
+    {
+      "name": "Bread",
+      "quantity": "1 loaf",
+      "price_per_unit": null,
+      "total_price": null,
+      "url": null
+    },
+    {
+      "name": "Peanut butter",
+      "quantity": "1 jar",
+      "price_per_unit": null,
+      "total_price": null,
+      "url": null
+    },
+    {
+      "name": "Jelly",
+      "quantity": "1 jar",
+      "price_per_unit": null,
+      "total_price": null,
+      "url": null
+    },
+    {
+      "name": "Cereal",
+      "quantity": "1 box",
+      "price_per_unit": null,
+      "total_price": null,
+      "url": null
+    },
+    {
+      "name": "Cheese",
+      "quantity": "1 lb",
+      "price_per_unit": 4.49,
+      "total_price": 4.49,
+      "url": "https://www.walmart.ca/en/search?q=cheese"
+    },
+    {
+      "name": "Pasta",
+      "quantity": "1 lb",
+      "price_per_unit": 1.79,
+      "total_price": 1.79,
+      "url": "https://www.walmart.ca/en/search?q=pasta"
+    },
+    {
+      "name": "Tomato sauce",
+      "quantity": "1 jar",
+      "price_per_unit": null,
+      "total_price": null,
+      "url": null
+    },
+    {
+      "name": "Tuna",
+      "quantity": "4 cans",
+      "price_per_unit": null,
+      "total_price": null,
+      "url": null
+    },
+    {
+      "name": "Olive oil",
+      "quantity": "500 ml",
+      "price_per_unit": 7.99,
+      "total_price": 7.99,
+      "url": "https://www.walmart.ca/en/search?q=olive+oil"
+    },
+    {
+      "name": "Salt",
+      "quantity": "1 pack",
+      "price_per_unit": null,
+      "total_price": null,
+      "url": null
+    },
+    {
+      "name": "Pepper",
+      "quantity": "1 pack",
+      "price_per_unit": null,
+      "total_price": null,
+      "url": null
+    }
+  ],
+  "total_price": 27.730000000000004,
+  "budget": 100.0
+}

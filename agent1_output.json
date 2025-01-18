@@ -1,61 +1,81 @@
 {
   "items": [
     {
-      "name": "rice",
+      "name": "Chicken breast",
       "quantity": "2 lbs"
     },
     {
-      "name": "chicken breast",
-      "quantity": "1.5 lbs"
+      "name": "Brown rice",
+      "quantity": "1 lb"
     },
     {
-      "name": "eggs",
-      "quantity": "12 pieces"
+      "name": "Broccoli",
+      "quantity": "1 lb"
     },
     {
-      "name": "milk",
-      "quantity": "1 gallon"
+      "name": "Carrots",
+      "quantity": "1 lb"
     },
     {
-      "name": "bread",
-      "quantity": "1 loaf"
-    },
-    {
-      "name": "apples",
+      "name": "Bananas",
       "quantity": "6 pieces"
     },
     {
-      "name": "carrots",
-      "quantity": "1 lb"
+      "name": "Apples",
+      "quantity": "6 pieces"
     },
     {
-      "name": "potatoes",
-      "quantity": "2 lbs"
+      "name": "Almond milk",
+      "quantity": "1 gallon"
     },
     {
-      "name": "pasta",
-      "quantity": "1 lb"
+      "name": "Eggs",
+      "quantity": "1 dozen"
     },
     {
-      "name": "canned tomatoes",
-      "quantity": "2 cans"
+      "name": "Bread",
+      "quantity": "1 loaf"
     },
     {
-      "name": "cheese",
-      "quantity": "0.5 lb"
-    },
-    {
-      "name": "lettuce",
-      "quantity": "1 head"
-    },
-    {
-      "name": "peanut butter",
+      "name": "Peanut butter",
       "quantity": "1 jar"
     },
     {
-      "name": "oatmeal",
+      "name": "Jelly",
+      "quantity": "1 jar"
+    },
+    {
+      "name": "Cereal",
+      "quantity": "1 box"
+    },
+    {
+      "name": "Cheese",
       "quantity": "1 lb"
+    },
+    {
+      "name": "Pasta",
+      "quantity": "1 lb"
+    },
+    {
+      "name": "Tomato sauce",
+      "quantity": "1 jar"
+    },
+    {
+      "name": "Tuna",
+      "quantity": "4 cans"
+    },
+    {
+      "name": "Olive oil",
+      "quantity": "500 ml"
+    },
+    {
+      "name": "Salt",
+      "quantity": "1 pack"
+    },
+    {
+      "name": "Pepper",
+      "quantity": "1 pack"
     }
   ],
-  "budget": 50.0
+  "budget": 100.0
 }

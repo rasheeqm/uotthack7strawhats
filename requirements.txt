@@ -7,3 +7,13 @@ bcrypt
 python-jose
 passlib
 python-multipart
+langchain-core
+langchain-anthropic
+langgraph
+langchain
+pydantic
+openai
+selenium
+chromedriver-autoinstaller
+beautifulsoup4
+langchain-openai
