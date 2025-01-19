@@ -11,6 +11,24 @@ router = APIRouter(prefix="/meals", tags=["meals"])
 async def add_meal(meal: dict, current_user: dict = Depends(get_current_user)):
     try:
         meal['user_id'] = current_user['_id']
+        pipeline = [
+            {
+                "$group": {
+                    "_id": '$user_id',  # Group all documents together
+                    "maxWeek": {
+                        "$max": "$week"
+                    },
+                }
+            }
+        ]
+        weeks = db["meals"].aggregate(pipeline)
+        latest_week = 0
+        async for week in weeks:
+            print(week)
+            if week['_id'] == current_user["_id"]:
+                latest_week = week["maxWeek"]
+        latest_week += 1
+        meal['week'] = latest_week
         result = await db['meals'].insert_one(meal)
         return {"message": "Meal added successfully"}
     except Exception as e:
