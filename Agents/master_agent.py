@@ -80,10 +80,10 @@ def initialize_files():
 def calculate_caloric_needs(profile: UserProfile) -> float:
     """Calculate estimated daily caloric needs based on user profile."""
     # Basic BMR calculation using Harris-Benedict equation
-    if profile.sex.lower() == "male":
-        bmr = 88.362 + (13.397 * profile.weight) + (4.799 * profile.height) - (5.677 * profile.age)
+    if profile["sex"].lower() == "male":
+        bmr = 88.362 + (13.397 * profile["weight"]) + (4.799 * profile["height"]) - (5.677 * profile["age"])
     else:
-        bmr = 447.593 + (9.247 * profile.weight) + (3.098 * profile.height) - (4.330 * profile.age)
+        bmr = 447.593 + (9.247 * profile["weight"]) + (3.098 * profile["height"]) - (4.330 * profile["age"])
     
     # Activity level multipliers
     activity_multipliers = {
@@ -94,13 +94,13 @@ def calculate_caloric_needs(profile: UserProfile) -> float:
         "extra_active": 1.9
     }
     
-    activity_factor = activity_multipliers.get(profile.activity_level.lower(), 1.2)
+    activity_factor = activity_multipliers.get(profile["activity_level"].lower(), 1.2)
     total_calories = bmr * activity_factor
     
     # Adjust based on goal
-    if profile.goal.lower() == "weight_loss":
+    if profile["goal"].lower() == "weight loss":
         total_calories *= 0.8
-    elif profile.goal.lower() == "weight_gain":
+    elif profile["goal"].lower() == "muscle gain":
         total_calories *= 1.2
     
     return round(total_calories)
@@ -121,17 +121,17 @@ def create_grocery_prompt(profile: UserProfile) -> str:
     return f"""You are a personalized grocery list generator. Create a list of grocery items with quantities for one week based on the following user profile:
 
 REMEMBER:
-- Age: {profile.age} years
-- Sex: {profile.sex}
-- Height: {profile.height} cm
-- Weight: {profile.weight} kg
-- Diet Preferences: {', '.join(profile.diet_preference)}
-- Allergies: {', '.join(profile.allergies)}
-- Activity Level: {profile.activity_level}
-- Goal: {profile.goal}
-- Medical Conditions: {', '.join(profile.medical_conditions)}
+- Age: {profile["age"]} years
+- Sex: {profile["sex"]}
+- Height: {profile["height"]} cm
+- Weight: {profile["weight"]} kg
+- Diet Preferences: {', '.join(profile["diet_preference"])}
+- Allergies: {', '.join(profile["allergies"])}
+- Activity Level: {profile["activity_level"]}
+- Goal: {profile["goal"]}
+- Medical Conditions: {', '.join(profile["medical_conditions"])}
 - Estimated Daily Caloric Needs: {calories} calories
-- Weekly Budget: ${profile.budget}
+- Weekly Budget: ${budget}
 
 REQUIREMENTS:
 1. Ensure NO items from the allergens list are included
@@ -139,7 +139,7 @@ REQUIREMENTS:
 3. Consider medical conditions when selecting items
 4. Plan for {calories} calories per day
 5. All quantities MUST include units (e.g., "2 lbs", "1 gallon", "500g", "3 pieces")
-6. Stay within the weekly budget of ${profile.budget}
+6. Stay within the weekly budget of ${budget}
 
 The output must be valid JSON with this structure:
 {json_structure}"""
@@ -470,11 +470,11 @@ def create_recipe_prompt(profile: UserProfile, ingredients: list) -> str:
     return f"""Generate 7 recipes based on these ingredients and user profile. Return ONLY valid JSON.
 
 Profile:
-- Age: {profile.age}
-- Diet Preferences: {', '.join(profile.diet_preference)}
-- Allergies: {', '.join(profile.allergies)}
-- Medical Conditions: {', '.join(profile.medical_conditions)}
-- Goal: {profile.goal}
+- Age: {profile["age"]}
+- Diet Preferences: {', '.join(profile["diet_preference"])}
+- Allergies: {', '.join(profile["allergies"])}
+- Medical Conditions: {', '.join(profile["medical_conditions"])}
+- Goal: {profile["goal"]}
 Available Ingredients: {', '.join(ingredients)}
 
 Requirements:
@@ -515,7 +515,13 @@ Your response must be ONLY the following JSON structure, with no additional text
 async def run_grocery_workflow(profile: UserProfile, jwt_token: str, user_message: str) -> str:
     """Run the grocery list workflow with user profile, asynchronously."""
     initialize_files()
-    
+    import re
+
+    match = re.search(r'\$(\d+(?:\.\d+)?)', user_message)
+    global budget
+    if match:
+        value = match.group(1)  # Extract the captured value
+        budget = value
     # Store profile globally for recipe generation
     global current_profile
     global token
