@@ -22,7 +22,7 @@
     },
     {
       "name": "Apples",
-      "quantity": "6 pieces"
+      "quantity": "5 pieces"
     },
     {
       "name": "Almond milk",
@@ -53,23 +53,11 @@
       "quantity": "4 cans"
     },
     {
-      "name": "Olive oil",
-      "quantity": "500 ml"
-    },
-    {
-      "name": "Black beans",
-      "quantity": "2 cans"
-    },
-    {
-      "name": "Frozen mixed berries",
+      "name": "Frozen berries",
       "quantity": "1 lb"
     },
     {
       "name": "Spinach",
-      "quantity": "1 bag"
-    },
-    {
-      "name": "Cheese",
       "quantity": "1 lb"
     },
     {
@@ -79,6 +67,18 @@
     {
       "name": "Onions",
       "quantity": "2 pieces"
+    },
+    {
+      "name": "Garlic",
+      "quantity": "1 bulb"
+    },
+    {
+      "name": "Olive oil",
+      "quantity": "500 ml"
+    },
+    {
+      "name": "Black beans",
+      "quantity": "2 cans"
     }
   ],
   "budget": 100.0

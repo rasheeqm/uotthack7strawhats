@@ -11,6 +11,8 @@ import getpass
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 from langgraph.graph import StateGraph, START
+import sys
+from web_search_v8 import search_grocery_tracker
 
 # Initialize OpenAI API key
 if not os.environ.get("OPENAI_API_KEY"):
@@ -63,8 +65,12 @@ def initialize_files():
     ensure_file_exists('agent1_output.json', {"items": [], "budget": 0})
     ensure_file_exists('item_prices.json', {"items": [], "total_price": 0, "budget": 0})
 
-def load_ingredients_data():
-    with open('data/ingredient_to_price_and_url.json', 'r') as f:
+def load_ingredients_data(item_names):
+    store_type_value = "nofrills"  # Example store type value
+    specific_store_value = "3643"  # Example specific store value
+    out_file = "agent1_search_to_cheapest_ingredient.json"
+    search_grocery_tracker(store_type_value, specific_store_value, item_names, out_file)
+    with open(out_file, 'r') as f:
         return json.load(f)
 
 def calculate_caloric_needs(profile: UserProfile) -> float:
@@ -143,8 +149,17 @@ def find_cheapest():
     try:
         print("Reading from agent1_output.json and ingredient data...")
         
-        grocery_list = safe_read_json('agent1_output.json', {"items": [], "budget": 0})
-        ingredients_data = load_ingredients_data()
+        # Read the JSON file
+        with open('agent1_output.json', 'r') as f:
+            grocery_list = json.load(f)
+
+        # Extract names of the items into a list
+        item_names = [item['name'] for item in grocery_list['items']]
+
+        # Print the list of names
+        print(item_names)
+        
+        ingredients_data = load_ingredients_data(item_names)
         ingredients_dict = {item['name'].lower(): item 
                           for item in ingredients_data.get('ingredients', [])}
         

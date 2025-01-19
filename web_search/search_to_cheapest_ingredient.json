@@ -1,0 +1,37 @@
+{
+    "ingredients": [
+        {
+            "title": "Organic Bananas, Bunch",
+            "subtitle": "PC Organics",
+            "prices": "$2.40",
+            "unit_size": "$2.18/1kg $0.99/1lb",
+            "unit_price": "$1.10 / each",
+            "numeric_unit_price": 1.1,
+            "name": "banana",
+            "price": 1.1,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Organic+Bananas,+Bunch"
+        },
+        {
+            "title": "Royal Gala Apples",
+            "subtitle": "",
+            "prices": "$1.15",
+            "unit_size": "$5.49/1kg $2.49/1lb",
+            "unit_price": "$0.21 / each",
+            "numeric_unit_price": 0.21,
+            "name": "apple",
+            "price": 0.21,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Royal+Gala+Apples"
+        },
+        {
+            "title": "Partly Skimmed Milk 2% MF",
+            "subtitle": "Neilson",
+            "prices": "$6.08",
+            "unit_size": "4 l",
+            "unit_price": "$0.15 / 100ml",
+            "numeric_unit_price": 0.15,
+            "name": "milk",
+            "price": 0.15,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Partly+Skimmed+Milk+2%+MF"
+        }
+    ]
+}

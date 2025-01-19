@@ -1,0 +1,224 @@
+{
+    "ingredients": [
+        {
+            "title": "Free From Chicken Breast, Boneless, Skinless",
+            "subtitle": "President's Choice",
+            "prices": "$12.66",
+            "unit_size": "$20.92/1kg $9.49/1lb",
+            "unit_price": "$0.61 / each",
+            "numeric_unit_price": 0.61,
+            "name": "Chicken breast",
+            "price": 0.61,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Free+From+Chicken+Breast,+Boneless,+Skinless"
+        },
+        {
+            "title": "Thai Hom Mali Brown Jasmine Rice",
+            "subtitle": "Rooster",
+            "prices": "$5.99",
+            "unit_size": "2 kg",
+            "unit_price": "$0.30 / 100g",
+            "numeric_unit_price": 0.3,
+            "name": "Brown rice",
+            "price": 0.3,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Thai+Hom+Mali+Brown+Jasmine+Rice"
+        },
+        {
+            "title": "Broccoli Crown",
+            "subtitle": "",
+            "prices": "$1.99",
+            "unit_size": "1 ea",
+            "unit_price": "$1.99 / each",
+            "numeric_unit_price": 1.99,
+            "name": "Broccoli",
+            "price": 1.99,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Broccoli+Crown"
+        },
+        {
+            "title": "Carrots, 3 lb Bag",
+            "subtitle": "Farmer's Market",
+            "prices": "$2.99",
+            "unit_size": "1.362 kg",
+            "unit_price": "$0.22 / 100g",
+            "numeric_unit_price": 0.22,
+            "name": "Carrots",
+            "price": 0.22,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Carrots,+3+lb+Bag"
+        },
+        {
+            "title": "Organic Bananas, Bunch",
+            "subtitle": "PC Organics",
+            "prices": "$2.40",
+            "unit_size": "$2.18/1kg $0.99/1lb",
+            "unit_price": "$1.10 / each",
+            "numeric_unit_price": 1.1,
+            "name": "Bananas",
+            "price": 1.1,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Organic+Bananas,+Bunch"
+        },
+        {
+            "title": "Royal Gala Apples",
+            "subtitle": "",
+            "prices": "$1.15",
+            "unit_size": "$5.49/1kg $2.49/1lb",
+            "unit_price": "$0.21 / each",
+            "numeric_unit_price": 0.21,
+            "name": "Apples",
+            "price": 0.21,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Royal+Gala+Apples"
+        },
+        {
+            "title": "Almond Beverage, Unsweetened Original",
+            "subtitle": "Earth's Own",
+            "prices": "$4.00",
+            "unit_size": "1.89 l",
+            "unit_price": "$0.21 / 100ml",
+            "numeric_unit_price": 0.21,
+            "name": "Almond milk",
+            "price": 0.21,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Almond+Beverage,+Unsweetened+Original"
+        },
+        {
+            "title": "14 Grains Bread",
+            "subtitle": "Country Harvest",
+            "prices": "$3.99",
+            "unit_size": "600 g",
+            "unit_price": "$0.67 / 100g",
+            "numeric_unit_price": 0.67,
+            "name": "Whole grain bread",
+            "price": 0.67,
+            "url": "https://www.nofrills.ca/en/search?search-bar=14+Grains+Bread"
+        },
+        {
+            "title": "Large Size Eggs",
+            "subtitle": "No Name",
+            "prices": "$9.65",
+            "unit_size": "30 ea",
+            "unit_price": "$0.32 / each",
+            "numeric_unit_price": 0.32,
+            "name": "Eggs",
+            "price": 0.32,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Large+Size+Eggs"
+        },
+        {
+            "title": "Plain Greek Yogurt 0%",
+            "subtitle": "President's Choice",
+            "prices": "$5.00",
+            "unit_size": "750 g",
+            "unit_price": "$0.67 / 100g",
+            "numeric_unit_price": 0.67,
+            "name": "Greek yogurt",
+            "price": 0.67,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Plain+Greek+Yogurt+0%"
+        },
+        {
+            "title": "Quick 100% Whole Grain Oats",
+            "subtitle": "No Name",
+            "prices": "$3.00",
+            "unit_size": "1 kg",
+            "unit_price": "$0.30 / 100g",
+            "numeric_unit_price": 0.3,
+            "name": "Oats",
+            "price": 0.3,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Quick+100%+Whole+Grain+Oats"
+        },
+        {
+            "title": "Smooth Peanut Butter",
+            "subtitle": "Kraft",
+            "prices": "$7.00",
+            "unit_size": "1 kg",
+            "unit_price": "$0.70 / 100g",
+            "numeric_unit_price": 0.7,
+            "name": "Peanut butter",
+            "price": 0.7,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Smooth+Peanut+Butter"
+        },
+        {
+            "title": "Flaked Light Tuna",
+            "subtitle": "No Name",
+            "prices": "$1.00",
+            "unit_size": "170 g",
+            "unit_price": "$0.59 / 100g",
+            "numeric_unit_price": 0.59,
+            "name": "Canned tuna",
+            "price": 0.59,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Flaked+Light+Tuna"
+        },
+        {
+            "title": "Large Size Frozen Fried Potatoes",
+            "subtitle": "CAVENDISH FARMS",
+            "prices": "$10.49",
+            "unit_size": "2.25 kg",
+            "unit_price": "$0.47 / 100g",
+            "numeric_unit_price": 0.47,
+            "name": "Frozen berries",
+            "price": 0.47,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Large+Size+Frozen+Fried+Potatoes"
+        },
+        {
+            "title": "Cello Spinach",
+            "subtitle": "",
+            "prices": "$2.99",
+            "unit_size": "283.5 g",
+            "unit_price": "$1.05 / 100g",
+            "numeric_unit_price": 1.05,
+            "name": "Spinach",
+            "price": 1.05,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Cello+Spinach"
+        },
+        {
+            "title": "Roma Tomatoes",
+            "subtitle": "",
+            "prices": "$0.92",
+            "unit_size": "$7.69/1kg $3.49/1lb",
+            "unit_price": "$0.12 / each",
+            "numeric_unit_price": 0.12,
+            "name": "Tomatoes",
+            "price": 0.12,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Roma+Tomatoes"
+        },
+        {
+            "title": "Yellow Onions, 3 lb Bag",
+            "subtitle": "Farmer's Market",
+            "prices": "$2.99",
+            "unit_size": "1.36 kg",
+            "unit_price": "$0.22 / 100g",
+            "numeric_unit_price": 0.22,
+            "name": "Onions",
+            "price": 0.22,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Yellow+Onions,+3+lb+Bag"
+        },
+        {
+            "title": "Colossal Garlic",
+            "subtitle": "",
+            "prices": "$1.32",
+            "unit_size": "$13.21/1kg $5.99/1lb",
+            "unit_price": "$0.10 / each",
+            "numeric_unit_price": 0.1,
+            "name": "Garlic",
+            "price": 0.1,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Colossal+Garlic"
+        },
+        {
+            "title": "100% Extra Virgin Olive Oil",
+            "subtitle": "No Name",
+            "prices": "$11.99",
+            "unit_size": "750 ml",
+            "unit_price": "$1.60 / 100ml",
+            "numeric_unit_price": 1.6,
+            "name": "Olive oil",
+            "price": 1.6,
+            "url": "https://www.nofrills.ca/en/search?search-bar=100%+Extra+Virgin+Olive+Oil"
+        },
+        {
+            "title": "Black Beans",
+            "subtitle": "No Name",
+            "prices": "$1.50",
+            "unit_size": "540 ml",
+            "unit_price": "$0.28 / 100ml",
+            "numeric_unit_price": 0.28,
+            "name": "Black beans",
+            "price": 0.28,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Black+Beans"
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+[
+    {
+        "search_term": "milk",
+        "cheapest_product": {
+            "title": "Partly Skimmed Milk 2% MF",
+            "subtitle": "Neilson",
+            "prices": "$6.08",
+            "unit_size": "4 l",
+            "unit_price": "$0.15 / 100ml",
+            "numeric_unit_price": 0.15
+        }
+    },
+    {
+        "search_term": "bread",
+        "cheapest_product": {
+            "title": "Original Bread",
+            "subtitle": "No Name",
+            "prices": "$1.99",
+            "unit_size": "675 g",
+            "unit_price": "$0.29 / 100g",
+            "numeric_unit_price": 0.29
+        }
+    },
+    {
+        "search_term": "eggs",
+        "cheapest_product": null
+    }
+]
