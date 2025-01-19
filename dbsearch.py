@@ -15,7 +15,7 @@ def search_chromadb(query, persist_directory="chroma_persistence", collection_na
     # Step 4: Perform the query
     results = collection.query(
         query_embeddings=query_embedding.tolist(),
-        n_results=5  # Number of results to return
+        n_results=1  # Number of results to return
     )
 
     # Step 5: Display results
