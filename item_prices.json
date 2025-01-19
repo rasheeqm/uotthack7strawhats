@@ -3,144 +3,144 @@
     {
       "name": "Quinoa",
       "quantity": "1 kg",
-      "price_per_unit": 0.78,
-      "total_price": 13.99,
-      "url": "https://www.nofrills.ca/en/search?search-bar=Quinoa"
+      "price": 0.67,
+      "total_price": 3.99,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Quinoa+Flax+Bread"
     },
     {
       "name": "Brown Rice",
       "quantity": "1 kg",
-      "price_per_unit": 0.3,
+      "price": 0.3,
       "total_price": 5.99,
       "url": "https://www.nofrills.ca/en/search?search-bar=Thai+Hom+Mali+Brown+Jasmine+Rice"
     },
     {
       "name": "Whole Wheat Bread",
       "quantity": "1 loaf",
-      "price_per_unit": 0.29,
+      "price": 0.29,
       "total_price": 1.99,
       "url": "https://www.nofrills.ca/en/search?search-bar=100%+Whole+Wheat+Bread"
     },
     {
       "name": "Almond Milk",
       "quantity": "2 liters",
-      "price_per_unit": 0.21,
+      "price": 0.21,
       "total_price": 4.0,
       "url": "https://www.nofrills.ca/en/search?search-bar=Almond+Beverage,+Unsweetened+Original"
     },
     {
       "name": "Greek Yogurt",
       "quantity": "500g",
-      "price_per_unit": 0.67,
+      "price": 0.67,
       "total_price": 5.0,
       "url": "https://www.nofrills.ca/en/search?search-bar=Plain+Greek+Yogurt+0%"
     },
     {
       "name": "Tofu",
       "quantity": "1 kg",
-      "price_per_unit": 0.55,
+      "price": 0.55,
       "total_price": 2.5,
       "url": "https://www.nofrills.ca/en/search?search-bar=Extra+Firm+Tofu"
     },
     {
       "name": "Mixed Vegetables (frozen)",
-      "quantity": "1 kg",
-      "price_per_unit": 0.27,
+      "quantity": "2 kg",
+      "price": 0.27,
       "total_price": 5.49,
       "url": "https://www.nofrills.ca/en/search?search-bar=Mixed+Vegetables"
     },
     {
       "name": "Fresh Fruits (apples, bananas, oranges)",
       "quantity": "2 kg",
-      "price_per_unit": 0.18,
+      "price": 0.18,
       "total_price": 1.25,
       "url": "https://www.nofrills.ca/en/search?search-bar=Iced+Tea+Blood+Orange"
     },
     {
       "name": "Spinach",
       "quantity": "500g",
-      "price_per_unit": 1.05,
-      "total_price": 2.99,
-      "url": "https://www.nofrills.ca/en/search?search-bar=Cello+Spinach"
+      "price": 1.27,
+      "total_price": 5.49,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Spinach+Dip"
     },
     {
       "name": "Tomatoes",
       "quantity": "1 kg",
-      "price_per_unit": 0.12,
-      "total_price": 0.92,
-      "url": "https://www.nofrills.ca/en/search?search-bar=Roma+Tomatoes"
+      "price": 0.45,
+      "total_price": 4.49,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Tomato+Ketchup"
     },
     {
       "name": "Cucumbers",
       "quantity": "1 kg",
-      "price_per_unit": 0.8,
+      "price": 0.8,
       "total_price": 5.99,
       "url": "https://www.nofrills.ca/en/search?search-bar=Cucumbers+11+count"
     },
     {
       "name": "Avocados",
       "quantity": "4 pieces",
-      "price_per_unit": 0.59,
+      "price": 0.59,
       "total_price": 8.0,
       "url": "https://www.nofrills.ca/en/search?search-bar=Naturally+Imperfect+Avocados,+3+lb+Bag"
     },
     {
+      "name": "Eggs",
+      "quantity": "1 dozen",
+      "price": 0.32,
+      "total_price": 9.65,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Large+Size+Eggs"
+    },
+    {
       "name": "Olive Oil",
       "quantity": "500 ml",
-      "price_per_unit": 1.6,
-      "total_price": 11.99,
-      "url": "https://www.nofrills.ca/en/search?search-bar=100%+Extra+Virgin+Olive+Oil"
+      "price": 0.82,
+      "total_price": 6.99,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Margarine+with+Olive+Oil"
     },
     {
       "name": "Almonds",
-      "quantity": "200g",
-      "price_per_unit": 2.0,
+      "quantity": "500g",
+      "price": 2.0,
       "total_price": 2.0,
       "url": "https://www.nofrills.ca/en/search?search-bar=Slivered+Almonds"
     },
     {
       "name": "Chickpeas (canned)",
       "quantity": "2 cans",
-      "price_per_unit": 0.33,
+      "price": 0.33,
       "total_price": 1.79,
       "url": "https://www.nofrills.ca/en/search?search-bar=Chick+Peas"
     },
     {
       "name": "Black Beans (canned)",
       "quantity": "2 cans",
-      "price_per_unit": 0.33,
+      "price": 0.33,
       "total_price": 1.79,
       "url": "https://www.nofrills.ca/en/search?search-bar=Black+Beans"
     },
     {
-      "name": "Eggs",
-      "quantity": "1 dozen",
-      "price_per_unit": 0.32,
-      "total_price": 9.65,
-      "url": "https://www.nofrills.ca/en/search?search-bar=Large+Size+Eggs"
+      "name": "Lentils",
+      "quantity": "1 kg",
+      "price": 0.28,
+      "total_price": 1.5,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Lentils"
     },
     {
       "name": "Cheese",
       "quantity": "500g",
-      "price_per_unit": 1.43,
+      "price": 1.43,
       "total_price": 9.99,
       "url": "https://www.nofrills.ca/en/search?search-bar=Farmer's+Marble+Cheese"
     },
     {
       "name": "Hummus",
       "quantity": "500g",
-      "price_per_unit": 1.43,
-      "total_price": 6.5,
-      "url": "https://www.nofrills.ca/en/search?search-bar=Hummus+Chickpea+Dip+And+Spread"
-    },
-    {
-      "name": "Whole Grain Pasta",
-      "quantity": "1 kg",
-      "price_per_unit": 0.4,
-      "total_price": 1.5,
-      "url": "https://www.nofrills.ca/en/search?search-bar=Whole+Grains,+Rotini+Pasta"
+      "price": 1.54,
+      "total_price": 3.5,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Hummus"
     }
   ],
-  "total_price": 103.32000000000002,
+  "total_price": 91.39000000000001,
   "budget": "$100.0"
 }

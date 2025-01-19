@@ -26,7 +26,7 @@
     },
     {
       "name": "Mixed Vegetables (frozen)",
-      "quantity": "1 kg"
+      "quantity": "2 kg"
     },
     {
       "name": "Fresh Fruits (apples, bananas, oranges)",
@@ -49,12 +49,16 @@
       "quantity": "4 pieces"
     },
     {
+      "name": "Eggs",
+      "quantity": "1 dozen"
+    },
+    {
       "name": "Olive Oil",
       "quantity": "500 ml"
     },
     {
       "name": "Almonds",
-      "quantity": "200g"
+      "quantity": "500g"
     },
     {
       "name": "Chickpeas (canned)",
@@ -65,8 +69,8 @@
       "quantity": "2 cans"
     },
     {
-      "name": "Eggs",
-      "quantity": "1 dozen"
+      "name": "Lentils",
+      "quantity": "1 kg"
     },
     {
       "name": "Cheese",
@@ -75,10 +79,6 @@
     {
       "name": "Hummus",
       "quantity": "500g"
-    },
-    {
-      "name": "Whole Grain Pasta",
-      "quantity": "1 kg"
     }
   ],
   "budget": "$100.0"

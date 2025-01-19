@@ -1,0 +1,109 @@
+{
+  "recipes": [
+    {
+      "meal_name": "Quinoa and Vegetable Stir Fry",
+      "ingredients": [
+        {
+          "ingredient_name": "Quinoa",
+          "quantity": "1 cup"
+        },
+        {
+          "ingredient_name": "Mixed Vegetables",
+          "quantity": "2 cups"
+        },
+        {
+          "ingredient_name": "Tofu",
+          "quantity": "200 grams"
+        },
+        {
+          "ingredient_name": "Olive Oil",
+          "quantity": "2 tablespoons"
+        },
+        {
+          "ingredient_name": "Cheese",
+          "quantity": "50 grams"
+        }
+      ],
+      "recipe": [
+        "Cook quinoa according to package instructions.",
+        "Heat olive oil in a pan over medium heat.",
+        "Add tofu and cook until golden brown.",
+        "Add mixed vegetables and stir fry until cooked.",
+        "Add cooked quinoa and stir well.",
+        "Top with cheese and serve."
+      ],
+      "nutritional_info": {
+        "protein": "20 grams",
+        "carbs": "45 grams",
+        "fat": "15 grams"
+      }
+    },
+    {
+      "meal_name": "Greek Yogurt and Fruit Bowl",
+      "ingredients": [
+        {
+          "ingredient_name": "Greek Yogurt",
+          "quantity": "1 cup"
+        },
+        {
+          "ingredient_name": "Fresh Fruits (Apples, Bananas, Berries)",
+          "quantity": "1 cup"
+        },
+        {
+          "ingredient_name": "Almonds",
+          "quantity": "10 pieces"
+        }
+      ],
+      "recipe": [
+        "Place Greek yogurt in a bowl.",
+        "Top with fresh fruits and almonds.",
+        "Serve immediately."
+      ],
+      "nutritional_info": {
+        "protein": "20 grams",
+        "carbs": "30 grams",
+        "fat": "10 grams"
+      }
+    },
+    {
+      "meal_name": "Avocado and Chickpea Salad",
+      "ingredients": [
+        {
+          "ingredient_name": "Avocados",
+          "quantity": "1 piece"
+        },
+        {
+          "ingredient_name": "Chickpeas",
+          "quantity": "1 cup"
+        },
+        {
+          "ingredient_name": "Tomatoes",
+          "quantity": "1 piece"
+        },
+        {
+          "ingredient_name": "Cucumbers",
+          "quantity": "1 piece"
+        },
+        {
+          "ingredient_name": "Bell Peppers",
+          "quantity": "1 piece"
+        },
+        {
+          "ingredient_name": "Olive Oil",
+          "quantity": "1 tablespoon"
+        }
+      ],
+      "recipe": [
+        "Chop avocados, tomatoes, cucumbers, and bell peppers into small pieces.",
+        "Mix chopped vegetables and chickpeas in a bowl.",
+        "Drizzle with olive oil and toss well.",
+        "Serve immediately."
+      ],
+      "nutritional_info": {
+        "protein": "10 grams",
+        "carbs": "40 grams",
+        "fat": "20 grams"
+      }
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-from typing import Literal, List
+from typing import Literal, List , Dict, Any
 from langchain_core.messages import BaseMessage, HumanMessage
 from langchain_anthropic import ChatAnthropic
 from langgraph.prebuilt import create_react_agent
@@ -13,7 +13,7 @@ from langchain_core.tools import tool
 from langgraph.graph import StateGraph, START
 import sys
 from web_search_v8 import search_grocery_tracker
-
+import requests
 # Initialize OpenAI API key
 if not os.environ.get("OPENAI_API_KEY"):
     os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter your OpenAI API key: ")
@@ -302,6 +302,64 @@ def route_by_budget(state: MessagesState) -> Literal["grocery_list_generator", "
     except Exception as e:
         print(f"Error in route_by_budget: {e}")
         return "end"
+def retrieve_nutrition_information() -> Dict[str, Any]:
+    """
+    Retrieve Nutrition Information from the database for items in the price list
+    Returns a dictionary containing nutrition data for all items
+    """
+    try:
+        # Read the price list JSON
+        with open('item_prices.json', 'r') as f:
+            price_data = json.load(f)
+        
+        # Extract all item names from the price list
+        item_names = [item['name'] for item in price_data.get('items', [])]
+        
+        # Prepare the request to the nutrition API
+        url = "http://127.0.0.1:8000/nutrition"
+        data = {
+            "name": item_names
+        }
+        
+        try:
+            # Make the POST request to get nutrition data
+            response = requests.post(url, json=data)
+            
+            if response.status_code == 200:
+                nutrition_data = response.json()
+                
+                # Combine price and nutrition data
+                combined_results = []
+                for item in price_data.get('items', []):
+                    item_name = item['name']
+                    combined_entry = {
+                        'item_name': item_name,
+                        'quantity': item['quantity'],
+                        'price': item['price_per_unit'],
+                        'nutrition_data': nutrition_data.get(item_name, {})
+                    }
+                    combined_results.append(combined_entry)
+                
+                # Save the combined results
+                output_file = 'nutrition_information.json'
+                with open(output_file, 'w') as f:
+                    json.dump(combined_results, f, indent=2)
+                
+                print(f"Nutrition information saved to {output_file}")
+                return combined_results
+            
+            else:
+                print(f"Error: Status code {response.status_code}")
+                print(response.text)
+                return None
+                
+        except requests.exceptions.RequestException as e:
+            print(f"API request error: {str(e)}")
+            return None
+            
+    except Exception as e:
+        print(f"Error retrieving nutrition information: {str(e)}")
+        return None
 
 def run_grocery_workflow(profile: UserProfile):
     """Run the grocery list workflow with user profile"""
@@ -374,77 +432,6 @@ def run_grocery_workflow(profile: UserProfile):
                     print(f"{key}: {value}")
         print("-" * 50)
 
-
-def run_grocery_workflow(profile: UserProfile):
-    """Run the grocery list workflow with user profile"""
-    initialize_files()
-    
-    # Create grocery list agent with profile-based prompt
-    global grocery_list_agent
-    grocery_list_agent = create_react_agent(
-        llm,
-        tools=[],
-        state_modifier=create_grocery_prompt(profile)
-    )
-    
-    initial_state = {
-        "messages": [
-            HumanMessage(
-                content=f"Generate a personalized grocery list based on the provided profile and requirements."
-            )
-        ]
-    }
-    
-    # Initialize the graph
-    workflow = StateGraph(MessagesState)
-
-    # Add nodes
-    workflow.add_node("grocery_list_generator", grocery_list_node)
-    workflow.add_node("price_checker", price_checker_node)
-
-    # Add edges with conditional routing
-    workflow.add_edge(START, "grocery_list_generator")
-    workflow.add_edge("grocery_list_generator", "price_checker")
-    workflow.add_conditional_edges(
-        "price_checker",
-        route_by_budget,
-        {
-            "grocery_list_generator": "grocery_list_generator",
-            "end": END
-        }
-    )
-
-    # Compile the graph
-    graph = workflow.compile()
-    
-    events = graph.stream(
-        initial_state,
-        {"recursion_limit": 150},
-    )
-    
-    for event in events:
-        step_type = event.get("type", "")
-        if step_type == "start":
-            print("\n=== Starting New Workflow ===")
-        elif step_type == "end":
-            print("\n=== Workflow Complete ===")
-            try:
-                final_prices = safe_read_json('item_prices.json')
-                print("\nFinal Results:")
-                print(f"Total Price: ${final_prices.get('total_price', 0):.2f}")
-                print(f"Budget: ${final_prices.get('budget', 0):.2f}")
-            except Exception as e:
-                print(f"Error reading final results: {e}")
-        else:
-            print("\n--- Step Details ---")
-            if "messages" in event:
-                print("\nMessages:")
-                for msg in event["messages"][-1:]:
-                    print(f"{msg.name if hasattr(msg, 'name') else 'Unknown'}: {msg.content[:200]}...")
-            for key, value in event.items():
-                if key != "messages":
-                    print(f"{key}: {value}")
-        print("-" * 50)
 
 if __name__ == "__main__":
     # Example usage

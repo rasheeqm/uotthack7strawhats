@@ -45,7 +45,7 @@ def retrieve_nutrition_information() -> Dict[str, Any]:
         print("Searched Names:", searched_names)
 
         # Prepare the request to the nutrition API
-        url = "http://127.0.0.1:8000/nutrition/nutrition"
+        url = "http://127.0.0.1:8000/nutrition/nutrition/"
         data = {
             "name": searched_names
         }

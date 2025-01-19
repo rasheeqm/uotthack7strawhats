@@ -3,7 +3,7 @@ import chromadb
 
 def search_chromadb(query, persist_directory="chroma_persistence", collection_name="descriptions_collection"):
     # Step 1: Reopen the ChromaDB client
-    client = chromadb.PersistentClient(path="/Users/rohitshelke/Desktop/Work/Projects/uotthack7strawhats/chroma")
+    client = chromadb.PersistentClient(path="chroma")
 
     # Step 2: Access the existing collection
     collection = client.get_collection(name=collection_name)
