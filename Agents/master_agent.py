@@ -146,96 +146,95 @@ The output must be valid JSON with this structure:
 @tool
 def find_cheapest():
     """Read the latest grocery list and find prices for items"""
-    pass
-    # try:
-    #     print("Reading from agent1_output.json and ingredient data...")
+    try:
+        print("Reading from agent1_output.json and ingredient data...")
         
-    #     # Read the JSON file
-    #     with open('agent1_output.json', 'r') as f:
-    #         grocery_list = json.load(f)
+        # Read the JSON file
+        with open('agent1_output.json', 'r') as f:
+            grocery_list = json.load(f)
 
-    #     # Extract names of the items into a list
-    #     item_names = [item['name'] for item in grocery_list['items']]
+        # Extract names of the items into a list
+        item_names = [item['name'] for item in grocery_list['items']]
 
-    #     # Print the list of names
-    #     print(item_names)
+        # Print the list of names
+        print(item_names)
         
-    #     ingredients_data = load_ingredients_data(item_names)
-    #     ingredients_dict = {item['name'].lower(): item 
-    #                       for item in ingredients_data.get('ingredients', [])}
+        ingredients_data = load_ingredients_data(item_names)
+        ingredients_dict = {item['name'].lower(): item 
+                          for item in ingredients_data.get('ingredients', [])}
         
-    #     results = []
-    #     total_price = 0
+        results = []
+        total_price = 0
         
-    #     for item in grocery_list.get('items', []):
-    #         item_name = item['name'].lower()
+        for item in grocery_list.get('items', []):
+            item_name = item['name'].lower()
             
-    #         if item_name in ingredients_dict:
-    #             item_data = ingredients_dict[item_name]
-    #             quantity = item['quantity']
-    #             if isinstance(quantity, str):
-    #                 numeric_part = ''.join(filter(str.isdigit, quantity))
-    #                 quantity = float(numeric_part) if numeric_part else 1
+            if item_name in ingredients_dict:
+                item_data = ingredients_dict[item_name]
+                quantity = item['quantity']
+                if isinstance(quantity, str):
+                    numeric_part = ''.join(filter(str.isdigit, quantity))
+                    quantity = float(numeric_part) if numeric_part else 1
                 
-    #             # Calculate cost
-    #             val = float(item_data['prices'].split("$")[1])  # Extract the number part and convert it to float
-    #             print(f"Cost of {item_data['name']} is {val}")
-    #             item_total = val
+                # Calculate cost
+                val = float(item_data['prices'].split("$")[1])  # Extract the number part and convert it to float
+                print(f"Cost of {item_data['name']} is {val}")
+                item_total = val
 
-    #             results.append({
-    #                 'name': item['name'],
-    #                 'quantity': item['quantity'],
-    #                 'price': item_data['price'],
-    #                 'total_price': item_total,
-    #                 'url': item_data['url']
-    #             })
-    #             total_price += item_total
-    #         else:
-    #             results.append({
-    #                 'name': item['name'],
-    #                 'quantity': item['quantity'],
-    #                 'price': None,
-    #                 'total_price': None,
-    #                 'url': None
-    #             })
+                results.append({
+                    'name': item['name'],
+                    'quantity': item['quantity'],
+                    'price': item_data['price'],
+                    'total_price': item_total,
+                    'url': item_data['url']
+                })
+                total_price += item_total
+            else:
+                results.append({
+                    'name': item['name'],
+                    'quantity': item['quantity'],
+                    'price': None,
+                    'total_price': None,
+                    'url': None
+                })
         
-    #     output_data = {
-    #         'items': results,
-    #         'total_price': total_price,
-    #         'budget': grocery_list.get('budget', 0)
-    #     }
+        output_data = {
+            'items': results,
+            'total_price': total_price,
+            'budget': grocery_list.get('budget', 0)
+        }
         
-    #     safe_write_json('item_prices.json', output_data)
-    #     return output_data
-    # except Exception as e:
-    #     print(f"Error in find_cheapest: {str(e)}")
-    #     return {"error": str(e)}
+        safe_write_json('item_prices.json', output_data)
+        return output_data
+    except Exception as e:
+        print(f"Error in find_cheapest: {str(e)}")
+        return {"error": str(e)}
 # Grocery List Node
 def grocery_list_node(state: MessagesState) -> Command[Literal["price_checker"]]:
     """Process grocery list generation with user profile considerations"""
-    pass
-    # result = grocery_list_agent.invoke(state)
     
-    # try:
-    #     content = result["messages"][-1].content
-    #     cleaned_content = extract_json_from_response(content)
-    #     grocery_list = json.loads(cleaned_content)
-    #     print("Parsed grocery list:", json.dumps(grocery_list, indent=2))
-    #     safe_write_json('agent1_output.json', grocery_list)
+    result = grocery_list_agent.invoke(state)
+    
+    try:
+        content = result["messages"][-1].content
+        cleaned_content = extract_json_from_response(content)
+        grocery_list = json.loads(cleaned_content)
+        print("Parsed grocery list:", json.dumps(grocery_list, indent=2))
+        safe_write_json('agent1_output.json', grocery_list)
         
-    # except Exception as e:
-    #     print(f"Error in grocery list generation: {e}")
-    #     return Command(update={"messages": result["messages"]}, goto="price_checker")
+    except Exception as e:
+        print(f"Error in grocery list generation: {e}")
+        return Command(update={"messages": result["messages"]}, goto="price_checker")
     
-    # result["messages"][-1] = HumanMessage(
-    #     content=result["messages"][-1].content,
-    #     name="grocery_list_generator"
-    # )
+    result["messages"][-1] = HumanMessage(
+        content=result["messages"][-1].content,
+        name="grocery_list_generator"
+    )
     
-    # return Command(
-    #     update={"messages": result["messages"]},
-    #     goto="price_checker"
-    # )
+    return Command(
+        update={"messages": result["messages"]},
+        goto="price_checker"
+    )
 
 # Price Checker Agent
 price_checker_agent = create_react_agent(
@@ -511,7 +510,7 @@ def route_by_budget(state: MessagesState) -> Literal["grocery_list_generator", "
 #         print(f"Error retrieving nutrition information: {str(e)}")
 #         return None
 
-def run_grocery_workflow(profile: UserProfile, jwt_token: str):
+def run_grocery_workflow(profile: UserProfile, jwt_token: str, user_message: str):
     """Run the grocery list workflow with user profile"""
     initialize_files()
     
@@ -592,6 +591,18 @@ def run_grocery_workflow(profile: UserProfile, jwt_token: str):
             for key, value in event.items():
                 if key != "messages":
                     print(f"{key}: {value}")
+        return """Your Personalized Meal Plan is on the Way! 🍎🍽️
+
+Hi there!
+
+I’m thrilled to see you taking the first step toward healthier eating. Let’s be honest—eating healthy isn’t always easy, and eating healthy on a budget? That’s a whole new level of challenge. But don’t worry, you’re not in this alone!
+
+I’m working hard to craft a meal plan tailored just for you, along with a custom grocery list designed to make sticking to your goals simple and stress-free. You’ll find everything you need waiting for you on the Meal Planner tab soon.
+
+So sit tight and get ready to enjoy a delicious, healthy, and budget-friendly journey. You've got this, and I’ve got your back!
+
+Cheers to healthy eating,
+Your Meal Planner AI 🍳🌱"""
         print("-" * 50)
 
 if __name__ == "__main__":
@@ -609,5 +620,4 @@ if __name__ == "__main__":
         medical_conditions=["none"],
         budget=100.0
     )
-    
-    run_grocery_workflow(user_profile)
+    # run_grocery_workflow(user_profile, jwt_token, user_message)
