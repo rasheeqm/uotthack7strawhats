@@ -7,6 +7,7 @@ router = APIRouter(prefix="/nutrition", tags=["nutrition"])
 @router.post("/nutrition")
 async def get_nutrition_info(ingredients: dict):
     try:
+        
         print(ingredients)
         nutri_info = db['foods'].find({"description": {"$in": ingredients["name"]}}, {"description": 1, "foodNutrients": 1, "_id": 0})
         nutritional_info = []
