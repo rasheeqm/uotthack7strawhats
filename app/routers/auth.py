@@ -19,6 +19,15 @@ async def register_user(user: dict):
         "username": user['username'],
         "email": user['email'],
         "password": get_password_hash(user['password']),
+        "age": user['age'],
+        "sex": user['sex'],
+        "height": user['height'],
+        "height": user['height'],
+        "diet_preference": user['diet_preference'],
+        "allergies": user['allergies'],
+        "activity_level": user['activity_level'],
+        "goal": user['goal'],
+        "medical_conditions": user['medical_conditions']
     }
     await db["users"].insert_one(user_data)
     return {"message": "User registered successfully"}
@@ -32,6 +41,7 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
             detail="Incorrect username or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    access_token_expires = timedelta(minutes=30)
-    access_token = create_access_token(data={"sub": user["username"]}, expires_delta=access_token_expires)
-    return {"access_token": access_token, "token_type": "bearer"}
+    else:
+        access_token_expires = timedelta(minutes=30)
+        access_token = create_access_token(data={"sub": user["username"]}, expires_delta=access_token_expires)
+        return {"access_token": access_token, "token_type": "bearer"}

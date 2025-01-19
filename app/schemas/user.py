@@ -31,27 +31,7 @@ class User(BaseModel):
             "Kosher",
         ]
     ] = Field(...)
-    allergies: List[
-        Literal[
-            "Peanut",
-            "Tree Nut",
-            "Milk",
-            "Egg",
-            "Wheat",
-            "Soy",
-            "Fish",
-            "Shellfish",
-            "Gluten",
-            "Pollen",
-            "Dust",
-            "Mold",
-            "Pet Dander",
-            "Insect Stings",
-            "Latex",
-            "Penicillin",
-            "Sulfa Drugs",
-        ]
-    ] = Field(...)
+    allergies: str = Field(...)
     activity_level: Literal[
         "Sedentary",
         "Lightly Active",
@@ -63,10 +43,9 @@ class User(BaseModel):
         "Weight Loss",
         "Muscle Gain",
         "Both",
+        "Stay fit"
     ] = Field(...)
-    medical_conditions: Literal[
-        "Celiac Disease", "Diabetes", "Hypertension", "Cholesterol", "Obesity"
-    ] = Field(...)
+    medical_conditions: str = Field(...)
 
 
 class Token(BaseModel):
