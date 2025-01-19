@@ -12,7 +12,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 from langgraph.graph import StateGraph, START
 import sys
-from web_search_v8 import search_grocery_tracker
+from web_search.web_search_v8 import search_grocery_tracker
 import requests
 # Initialize OpenAI API key
 if not os.environ.get("OPENAI_API_KEY"):
@@ -184,7 +184,7 @@ def find_cheapest():
                 results.append({
                     'name': item['name'],
                     'quantity': item['quantity'],
-                    'price_per_unit': item_data['price'],
+                    'price': item_data['price'],
                     'total_price': item_total,
                     'url': item_data['url']
                 })
@@ -193,7 +193,7 @@ def find_cheapest():
                 results.append({
                     'name': item['name'],
                     'quantity': item['quantity'],
-                    'price_per_unit': None,
+                    'price': None,
                     'total_price': None,
                     'url': None
                 })
@@ -249,13 +249,88 @@ def price_checker_node(state: MessagesState) -> MessagesState:
         name="price_checker"
     )
     return result
+def create_recipe_prompt(profile: UserProfile, ingredients: list) -> str:
+    return f"""Generate 7 recipes based on these ingredients and user profile:
 
-def route_by_budget(state: MessagesState) -> Literal["grocery_list_generator", "end"]:
-    """Route based on budget comparison. Simply ends if under budget, suggests replacements if over."""
+Profile:
+- Age: {profile.age}
+- Diet Preferences: {', '.join(profile.diet_preference)}
+- Allergies: {', '.join(profile.allergies)}
+- Medical Conditions: {', '.join(profile.medical_conditions)}
+- Goal: {profile.goal}
+Available Ingredients: {', '.join(ingredients)}
+
+Create recipes that:
+1. Only use the available ingredients
+2. Respect dietary restrictions and allergies
+3. Are suitable for the user's medical conditions
+4. Include detailed nutritional information
+
+Output must be valid JSON with this structure:
+{{
+    "recipes": [
+        {{
+            "meal_name": "Name of the meal",
+            "ingredients": [
+                {{
+                    "item": "ingredient name",
+                    "quantity": "amount with units"
+                }}
+            ],
+            "recipe": [
+                "Step 1...",
+                "Step 2..."
+            ],
+            "nutrition_info": [{{
+                "protein": "X grams",
+                "carbs": "Y grams",
+                "fat": "Z grams",
+                "Calories": "Number in kcal",
+            }}],
+            
+        }}
+    ]
+}}"""
+
+def recipe_generator_node(state: MessagesState) -> MessagesState:
+    """Generate recipes based on available ingredients and user profile"""
+    try:
+        # Read available ingredients from item_prices.json
+        with open('item_prices.json', 'r') as f:
+            price_data = json.load(f)
+        ingredients = [item['name'] for item in price_data.get('items', [])]
+        
+        # Create recipe generation agent
+        recipe_agent = create_react_agent(
+            llm,
+            tools=[],
+            state_modifier=create_recipe_prompt(current_profile, ingredients)
+        )
+        
+        result = recipe_agent.invoke(state)
+        
+        # Parse and save recipes
+        content = result["messages"][-1].content
+        cleaned_content = extract_json_from_response(content)
+        recipes = json.loads(cleaned_content)
+        print(recipes)
+        safe_write_json('meals.json', recipes)
+        
+        result["messages"][-1] = HumanMessage(
+            content=result["messages"][-1].content,
+            name="recipe_generator"
+        )
+        
+        return result
+        
+    except Exception as e:
+        print(f"Error in recipe generation: {e}")
+        return state
+def route_by_budget(state: MessagesState) -> Literal["grocery_list_generator", "recipe_generator", "end"]:
+    """Route based on budget comparison"""
     try:
         prices_data = safe_read_json('item_prices.json')
         
-        # Clean and convert price values
         def clean_price(price_str):
             if isinstance(price_str, (int, float)):
                 return float(price_str)
@@ -264,36 +339,34 @@ def route_by_budget(state: MessagesState) -> Literal["grocery_list_generator", "
                 return float(cleaned) if cleaned else 0.0
             return 0.0
         
-        # Ensure values are float type
         total_price = clean_price(prices_data.get('total_price', 0))
         budget = clean_price(prices_data.get('budget', 0))
         budget_threshold = budget * 1.10
         
-        # If under budget (+10% buffer), just end
         if total_price <= budget_threshold:
-            return "end"
+            return "recipe_generator"  # Modified to go to recipe generation instead of end
         
-        # Over budget - find most expensive item and suggest replacement
+        # Over budget logic remains the same
         items = prices_data.get('items', [])
         valid_items = []
         for item in items:
             try:
-                price_per_unit = clean_price(item.get('price_per_unit'))
-                if price_per_unit > 0:
-                    item['price_per_unit'] = price_per_unit
+                price = clean_price(item.get('price'))
+                if price > 0:
+                    item['price'] = price
                     valid_items.append(item)
             except (TypeError, ValueError):
                 continue
                 
         if valid_items:
-            most_expensive = max(valid_items, key=lambda x: x['price_per_unit'])
+            most_expensive = max(valid_items, key=lambda x: x['price'])
             if 'messages' not in state:
                 state['messages'] = []
             state['messages'].append(
                 HumanMessage(
                     content=f"The total price ${total_price:.2f} is over budget threshold "
                            f"(${budget_threshold:.2f}). Please replace {most_expensive['name']} "
-                           f"(${most_expensive['price_per_unit']:.2f}/unit) with a cheaper alternative.",
+                           f"(${most_expensive['price']:.2f}/unit) with a cheaper alternative.",
                     name="budget_router"
                 )
             )
@@ -302,68 +375,73 @@ def route_by_budget(state: MessagesState) -> Literal["grocery_list_generator", "
     except Exception as e:
         print(f"Error in route_by_budget: {e}")
         return "end"
-def retrieve_nutrition_information() -> Dict[str, Any]:
-    """
-    Retrieve Nutrition Information from the database for items in the price list
-    Returns a dictionary containing nutrition data for all items
-    """
-    try:
-        # Read the price list JSON
-        with open('item_prices.json', 'r') as f:
-            price_data = json.load(f)
+
+# def retrieve_nutrition_information() -> Dict[str, Any]:
+#     """
+#     Retrieve Nutrition Information from the database for items in the price list
+#     Returns a dictionary containing nutrition data for all items
+#     """
+#     try:
+#         # Read the price list JSON
+#         with open('item_prices.json', 'r') as f:
+#             price_data = json.load(f)
         
-        # Extract all item names from the price list
-        item_names = [item['name'] for item in price_data.get('items', [])]
+#         # Extract all item names from the price list
+#         item_names = [item['name'] for item in price_data.get('items', [])]
         
-        # Prepare the request to the nutrition API
-        url = "http://127.0.0.1:8000/nutrition"
-        data = {
-            "name": item_names
-        }
+#         # Prepare the request to the nutrition API
+#         url = "http://127.0.0.1:8000/nutrition"
+#         data = {
+#             "name": item_names
+#         }
         
-        try:
-            # Make the POST request to get nutrition data
-            response = requests.post(url, json=data)
+#         try:
+#             # Make the POST request to get nutrition data
+#             response = requests.post(url, json=data)
             
-            if response.status_code == 200:
-                nutrition_data = response.json()
+#             if response.status_code == 200:
+#                 nutrition_data = response.json()
                 
-                # Combine price and nutrition data
-                combined_results = []
-                for item in price_data.get('items', []):
-                    item_name = item['name']
-                    combined_entry = {
-                        'item_name': item_name,
-                        'quantity': item['quantity'],
-                        'price': item['price_per_unit'],
-                        'nutrition_data': nutrition_data.get(item_name, {})
-                    }
-                    combined_results.append(combined_entry)
+#                 # Combine price and nutrition data
+#                 combined_results = []
+#                 for item in price_data.get('items', []):
+#                     item_name = item['name']
+#                     combined_entry = {
+#                         'item_name': item_name,
+#                         'quantity': item['quantity'],
+#                         'price': item['price'],
+#                         'nutrition_data': nutrition_data.get(item_name, {})
+#                     }
+#                     combined_results.append(combined_entry)
                 
-                # Save the combined results
-                output_file = 'nutrition_information.json'
-                with open(output_file, 'w') as f:
-                    json.dump(combined_results, f, indent=2)
+#                 # Save the combined results
+#                 output_file = 'nutrition_information.json'
+#                 with open(output_file, 'w') as f:
+#                     json.dump(combined_results, f, indent=2)
                 
-                print(f"Nutrition information saved to {output_file}")
-                return combined_results
+#                 print(f"Nutrition information saved to {output_file}")
+#                 return combined_results
             
-            else:
-                print(f"Error: Status code {response.status_code}")
-                print(response.text)
-                return None
+#             else:
+#                 print(f"Error: Status code {response.status_code}")
+#                 print(response.text)
+#                 return None
                 
-        except requests.exceptions.RequestException as e:
-            print(f"API request error: {str(e)}")
-            return None
+#         except requests.exceptions.RequestException as e:
+#             print(f"API request error: {str(e)}")
+#             return None
             
-    except Exception as e:
-        print(f"Error retrieving nutrition information: {str(e)}")
-        return None
+#     except Exception as e:
+#         print(f"Error retrieving nutrition information: {str(e)}")
+#         return None
 
 def run_grocery_workflow(profile: UserProfile):
     """Run the grocery list workflow with user profile"""
     initialize_files()
+    
+    # Store profile globally for recipe generation
+    global current_profile
+    current_profile = profile
     
     # Create grocery list agent with profile-based prompt
     global grocery_list_agent
@@ -387,20 +465,23 @@ def run_grocery_workflow(profile: UserProfile):
     # Add nodes
     workflow.add_node("grocery_list_generator", grocery_list_node)
     workflow.add_node("price_checker", price_checker_node)
+    workflow.add_node("recipe_generator", recipe_generator_node)  # Add new node
 
     # Add edges with conditional routing
     workflow.add_edge(START, "grocery_list_generator")
     workflow.add_edge("grocery_list_generator", "price_checker")
+    workflow.add_edge("recipe_generator", END)  # Add edge from recipe generator to end
     workflow.add_conditional_edges(
         "price_checker",
         route_by_budget,
         {
             "grocery_list_generator": "grocery_list_generator",
+            "recipe_generator": "recipe_generator",
             "end": END
         }
     )
 
-    # Compile the graph
+    # Compile and run the graph
     graph = workflow.compile()
     
     events = graph.stream(
@@ -416,9 +497,11 @@ def run_grocery_workflow(profile: UserProfile):
             print("\n=== Workflow Complete ===")
             try:
                 final_prices = safe_read_json('item_prices.json')
+                recipes = safe_read_json('meals.json')
                 print("\nFinal Results:")
                 print(f"Total Price: ${final_prices.get('total_price', 0):.2f}")
                 print(f"Budget: ${final_prices.get('budget', 0):.2f}")
+                print(f"\nGenerated {len(recipes.get('recipes', []))} recipes")
             except Exception as e:
                 print(f"Error reading final results: {e}")
         else:
@@ -431,7 +514,6 @@ def run_grocery_workflow(profile: UserProfile):
                 if key != "messages":
                     print(f"{key}: {value}")
         print("-" * 50)
-
 
 if __name__ == "__main__":
     # Example usage
