@@ -1,15 +1,48 @@
 {
     "ingredients": [
         {
-            "title": "Quinoa Flax Bread",
-            "subtitle": "Country Harvest",
-            "prices": "$3.99",
-            "unit_size": "600 g",
-            "unit_price": "$0.67 / 100g",
-            "numeric_unit_price": 0.67,
-            "name": "Quinoa",
-            "price": 0.67,
-            "url": "https://www.nofrills.ca/en/search?search-bar=Quinoa+Flax+Bread"
+            "title": "Lentils",
+            "subtitle": "No Name",
+            "prices": "$1.50",
+            "unit_size": "540 ml",
+            "unit_price": "$0.28 / 100ml",
+            "numeric_unit_price": 0.28,
+            "name": "Lentils",
+            "price": 0.28,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Lentils"
+        },
+        {
+            "title": "Bulgar Wheat, Light",
+            "subtitle": "Clic",
+            "prices": "$3.49",
+            "unit_size": "907 g",
+            "unit_price": "$0.38 / 100g",
+            "numeric_unit_price": 0.38,
+            "name": "Bulgur",
+            "price": 0.38,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Bulgar+Wheat,+Light"
+        },
+        {
+            "title": "Free From Chicken Thigh, Boneless, Skinless, Club Pack",
+            "subtitle": "President's Choice",
+            "prices": "$22.73",
+            "unit_size": "$19.82/1kg $8.99/1lb",
+            "unit_price": "$1.15 / each",
+            "numeric_unit_price": 1.15,
+            "name": "Chicken Thighs",
+            "price": 1.15,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Free+From+Chicken+Thigh,+Boneless,+Skinless,+Club+Pack"
+        },
+        {
+            "title": "Royal Gala Apples",
+            "subtitle": "",
+            "prices": "$1.15",
+            "unit_size": "$5.49/1kg $2.49/1lb",
+            "unit_price": "$0.21 / each",
+            "numeric_unit_price": 0.21,
+            "name": "Apples",
+            "price": 0.21,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Royal+Gala+Apples"
         },
         {
             "title": "Thai Hom Mali Brown Jasmine Rice",
@@ -23,6 +56,39 @@
             "url": "https://www.nofrills.ca/en/search?search-bar=Thai+Hom+Mali+Brown+Jasmine+Rice"
         },
         {
+            "title": "Cream of Broccoli Soup",
+            "subtitle": "Tim Hortons",
+            "prices": "$3.50",
+            "unit_size": "540 ml",
+            "unit_price": "$0.65 / 100ml",
+            "numeric_unit_price": 0.65,
+            "name": "Broccoli",
+            "price": 0.65,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Cream+of+Broccoli+Soup"
+        },
+        {
+            "title": "Sweet Potato",
+            "subtitle": "",
+            "prices": "$2.49",
+            "unit_size": "$3.95/1kg $1.79/1lb",
+            "unit_price": "$0.63 / each",
+            "numeric_unit_price": 0.63,
+            "name": "Sweet Potatoes",
+            "price": 0.63,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Sweet+Potato"
+        },
+        {
+            "title": "Organic Bananas, Bunch",
+            "subtitle": "PC Organics",
+            "prices": "$2.40",
+            "unit_size": "$2.18/1kg $0.99/1lb",
+            "unit_price": "$1.10 / each",
+            "numeric_unit_price": 1.1,
+            "name": "Bananas",
+            "price": 1.1,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Organic+Bananas,+Bunch"
+        },
+        {
             "title": "100% Whole Wheat Bread",
             "subtitle": "No Name",
             "prices": "$1.99",
@@ -32,6 +98,17 @@
             "name": "Whole Wheat Bread",
             "price": 0.29,
             "url": "https://www.nofrills.ca/en/search?search-bar=100%+Whole+Wheat+Bread"
+        },
+        {
+            "title": "Creamy Peanut Butter",
+            "subtitle": "Jif",
+            "prices": "$6.49",
+            "unit_size": "1 kg",
+            "unit_price": "$0.65 / 100g",
+            "numeric_unit_price": 0.65,
+            "name": "Peanut Butter",
+            "price": 0.65,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Creamy+Peanut+Butter"
         },
         {
             "title": "Almond Beverage, Unsweetened Original",
@@ -56,83 +133,6 @@
             "url": "https://www.nofrills.ca/en/search?search-bar=Plain+Greek+Yogurt+0%"
         },
         {
-            "title": "Extra Firm Tofu",
-            "subtitle": "Rooster",
-            "prices": "$2.50",
-            "unit_size": "454 g",
-            "unit_price": "$0.55 / 100g",
-            "numeric_unit_price": 0.55,
-            "name": "Tofu",
-            "price": 0.55,
-            "url": "https://www.nofrills.ca/en/search?search-bar=Extra+Firm+Tofu"
-        },
-        {
-            "title": "Mixed Vegetables",
-            "subtitle": "No Name",
-            "prices": "$5.49",
-            "unit_size": "2 kg",
-            "unit_price": "$0.27 / 100g",
-            "numeric_unit_price": 0.27,
-            "name": "Mixed Vegetables (frozen)",
-            "price": 0.27,
-            "url": "https://www.nofrills.ca/en/search?search-bar=Mixed+Vegetables"
-        },
-        {
-            "title": "Iced Tea Blood Orange",
-            "subtitle": "Brisk",
-            "prices": "$1.25",
-            "unit_size": "710 ml",
-            "unit_price": "$0.18 / 100ml",
-            "numeric_unit_price": 0.18,
-            "name": "Fresh Fruits (apples, bananas, oranges)",
-            "price": 0.18,
-            "url": "https://www.nofrills.ca/en/search?search-bar=Iced+Tea+Blood+Orange"
-        },
-        {
-            "title": "Spinach Dip",
-            "subtitle": "Tostitos",
-            "prices": "$5.49",
-            "unit_size": "432 g",
-            "unit_price": "$1.27 / 100g",
-            "numeric_unit_price": 1.27,
-            "name": "Spinach",
-            "price": 1.27,
-            "url": "https://www.nofrills.ca/en/search?search-bar=Spinach+Dip"
-        },
-        {
-            "title": "Tomato Ketchup",
-            "subtitle": "Frenchs",
-            "prices": "$4.49",
-            "unit_size": "1 l",
-            "unit_price": "$0.45 / 100ml",
-            "numeric_unit_price": 0.45,
-            "name": "Tomatoes",
-            "price": 0.45,
-            "url": "https://www.nofrills.ca/en/search?search-bar=Tomato+Ketchup"
-        },
-        {
-            "title": "Cucumbers 11 count",
-            "subtitle": "Farmer's Market",
-            "prices": "$5.99",
-            "unit_size": "750 g",
-            "unit_price": "$0.80 / 100g",
-            "numeric_unit_price": 0.8,
-            "name": "Cucumbers",
-            "price": 0.8,
-            "url": "https://www.nofrills.ca/en/search?search-bar=Cucumbers+11+count"
-        },
-        {
-            "title": "Naturally Imperfect Avocados, 3 lb Bag",
-            "subtitle": "No Name",
-            "prices": "$8.00",
-            "unit_size": "1.36 kg",
-            "unit_price": "$0.59 / 100g",
-            "numeric_unit_price": 0.59,
-            "name": "Avocados",
-            "price": 0.59,
-            "url": "https://www.nofrills.ca/en/search?search-bar=Naturally+Imperfect+Avocados,+3+lb+Bag"
-        },
-        {
             "title": "Large Size Eggs",
             "subtitle": "No Name",
             "prices": "$9.65",
@@ -144,15 +144,37 @@
             "url": "https://www.nofrills.ca/en/search?search-bar=Large+Size+Eggs"
         },
         {
-            "title": "Margarine with Olive Oil",
-            "subtitle": "Becel",
-            "prices": "$6.99",
-            "unit_size": "850 g",
-            "unit_price": "$0.82 / 100g",
-            "numeric_unit_price": 0.82,
-            "name": "Olive Oil",
-            "price": 0.82,
-            "url": "https://www.nofrills.ca/en/search?search-bar=Margarine+with+Olive+Oil"
+            "title": "Quick 100% Whole Grain Oats",
+            "subtitle": "No Name",
+            "prices": "$3.00",
+            "unit_size": "1 kg",
+            "unit_price": "$0.30 / 100g",
+            "numeric_unit_price": 0.3,
+            "name": "Oats",
+            "price": 0.3,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Quick+100%+Whole+Grain+Oats"
+        },
+        {
+            "title": "Cello Spinach",
+            "subtitle": "",
+            "prices": "$2.99",
+            "unit_size": "283.5 g",
+            "unit_price": "$1.05 / 100g",
+            "numeric_unit_price": 1.05,
+            "name": "Spinach",
+            "price": 1.05,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Cello+Spinach"
+        },
+        {
+            "title": "Flaked Light Tuna",
+            "subtitle": "No Name",
+            "prices": "$1.00",
+            "unit_size": "170 g",
+            "unit_price": "$0.59 / 100g",
+            "numeric_unit_price": 0.59,
+            "name": "Tuna",
+            "price": 0.59,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Flaked+Light+Tuna"
         },
         {
             "title": "Slivered Almonds",
@@ -166,59 +188,37 @@
             "url": "https://www.nofrills.ca/en/search?search-bar=Slivered+Almonds"
         },
         {
-            "title": "Chick Peas",
-            "subtitle": "Unico",
-            "prices": "$1.79",
-            "unit_size": "540 ml",
-            "unit_price": "$0.33 / 100ml",
-            "numeric_unit_price": 0.33,
-            "name": "Chickpeas (canned)",
-            "price": 0.33,
-            "url": "https://www.nofrills.ca/en/search?search-bar=Chick+Peas"
+            "title": "Margarine with Olive Oil",
+            "subtitle": "Becel",
+            "prices": "$6.99",
+            "unit_size": "850 g",
+            "unit_price": "$0.82 / 100g",
+            "numeric_unit_price": 0.82,
+            "name": "Olive Oil",
+            "price": 0.82,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Margarine+with+Olive+Oil"
         },
         {
-            "title": "Black Beans",
-            "subtitle": "PC Blue Menu",
-            "prices": "$1.79",
-            "unit_size": "540 ml",
-            "unit_price": "$0.33 / 100ml",
-            "numeric_unit_price": 0.33,
-            "name": "Black Beans (canned)",
-            "price": 0.33,
-            "url": "https://www.nofrills.ca/en/search?search-bar=Black+Beans"
+            "title": "Bananas, Bunch",
+            "subtitle": "",
+            "prices": "$1.49",
+            "unit_size": "$1.30/1kg $0.59/1lb",
+            "unit_price": "$1.15 / each",
+            "numeric_unit_price": 1.15,
+            "name": "Blueberries",
+            "price": 1.15,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Bananas,+Bunch"
         },
         {
-            "title": "Lentils",
+            "title": "Cottage Cheese, 2% M.F.",
             "subtitle": "No Name",
-            "prices": "$1.50",
-            "unit_size": "540 ml",
-            "unit_price": "$0.28 / 100ml",
-            "numeric_unit_price": 0.28,
-            "name": "Lentils",
-            "price": 0.28,
-            "url": "https://www.nofrills.ca/en/search?search-bar=Lentils"
-        },
-        {
-            "title": "Farmer's Marble Cheese",
-            "subtitle": "No Name",
-            "prices": "$9.99",
-            "unit_size": "700 g",
-            "unit_price": "$1.43 / 100g",
-            "numeric_unit_price": 1.43,
-            "name": "Cheese",
-            "price": 1.43,
-            "url": "https://www.nofrills.ca/en/search?search-bar=Farmer's+Marble+Cheese"
-        },
-        {
-            "title": "Hummus",
-            "subtitle": "President's Choice",
-            "prices": "$3.50",
-            "unit_size": "227 g",
-            "unit_price": "$1.54 / 100g",
-            "numeric_unit_price": 1.54,
-            "name": "Hummus",
-            "price": 1.54,
-            "url": "https://www.nofrills.ca/en/search?search-bar=Hummus"
+            "prices": "$3.99",
+            "unit_size": "500 g",
+            "unit_price": "$0.80 / 100g",
+            "numeric_unit_price": 0.8,
+            "name": "Cottage Cheese",
+            "price": 0.8,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Cottage+Cheese,+2%+M.F."
         }
     ]
 }

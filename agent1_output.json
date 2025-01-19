@@ -1,84 +1,84 @@
 {
   "items": [
     {
-      "name": "Quinoa",
-      "quantity": "1 kg"
+      "name": "Lentils",
+      "quantity": "2 lbs"
+    },
+    {
+      "name": "Bulgur",
+      "quantity": "5 lbs"
+    },
+    {
+      "name": "Chicken Thighs",
+      "quantity": "2 lbs"
+    },
+    {
+      "name": "Apples",
+      "quantity": "2 lbs"
     },
     {
       "name": "Brown Rice",
-      "quantity": "1 kg"
+      "quantity": "5 lbs"
+    },
+    {
+      "name": "Broccoli",
+      "quantity": "2 lbs"
+    },
+    {
+      "name": "Sweet Potatoes",
+      "quantity": "3 lbs"
+    },
+    {
+      "name": "Bananas",
+      "quantity": "2 lbs"
     },
     {
       "name": "Whole Wheat Bread",
-      "quantity": "1 loaf"
+      "quantity": "2 loaves"
+    },
+    {
+      "name": "Peanut Butter",
+      "quantity": "1 jar"
     },
     {
       "name": "Almond Milk",
-      "quantity": "2 liters"
+      "quantity": "1 gallon"
     },
     {
       "name": "Greek Yogurt",
-      "quantity": "500g"
-    },
-    {
-      "name": "Tofu",
-      "quantity": "1 kg"
-    },
-    {
-      "name": "Mixed Vegetables (frozen)",
-      "quantity": "2 kg"
-    },
-    {
-      "name": "Fresh Fruits (apples, bananas, oranges)",
-      "quantity": "2 kg"
-    },
-    {
-      "name": "Spinach",
-      "quantity": "500g"
-    },
-    {
-      "name": "Tomatoes",
-      "quantity": "1 kg"
-    },
-    {
-      "name": "Cucumbers",
-      "quantity": "1 kg"
-    },
-    {
-      "name": "Avocados",
-      "quantity": "4 pieces"
+      "quantity": "2 lbs"
     },
     {
       "name": "Eggs",
-      "quantity": "1 dozen"
+      "quantity": "2 dozen"
     },
     {
-      "name": "Olive Oil",
-      "quantity": "500 ml"
+      "name": "Oats",
+      "quantity": "2 lbs"
+    },
+    {
+      "name": "Spinach",
+      "quantity": "1 lb"
+    },
+    {
+      "name": "Tuna",
+      "quantity": "4 cans"
     },
     {
       "name": "Almonds",
-      "quantity": "500g"
+      "quantity": "1 lb"
     },
     {
-      "name": "Chickpeas (canned)",
-      "quantity": "2 cans"
+      "name": "Olive Oil",
+      "quantity": "1 bottle"
     },
     {
-      "name": "Black Beans (canned)",
-      "quantity": "2 cans"
+      "name": "Blueberries",
+      "quantity": "1 lb"
     },
     {
-      "name": "Lentils",
-      "quantity": "1 kg"
-    },
-    {
-      "name": "Cheese",
-      "quantity": "500g"
-    },
-    {
-      "name": "Hummus",
-      "quantity": "500g"
+      "name": "Cottage Cheese",
+      "quantity": "2 lbs"
     }
   ],
   "budget": "$100.0"

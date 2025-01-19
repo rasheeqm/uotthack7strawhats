@@ -1,108 +1,229 @@
 {
   "recipes": [
     {
-      "meal_name": "Quinoa and Vegetable Stir Fry",
+      "meal_name": "Chicken and Bulgur Salad",
       "ingredients": [
         {
-          "ingredient_name": "Quinoa",
-          "quantity": "1 cup"
-        },
-        {
-          "ingredient_name": "Mixed Vegetables",
-          "quantity": "2 cups"
-        },
-        {
-          "ingredient_name": "Tofu",
+          "item": "Chicken Thighs",
           "quantity": "200 grams"
         },
         {
-          "ingredient_name": "Olive Oil",
-          "quantity": "2 tablespoons"
+          "item": "Bulgur",
+          "quantity": "100 grams"
         },
         {
-          "ingredient_name": "Cheese",
-          "quantity": "50 grams"
+          "item": "Spinach",
+          "quantity": "1 cup"
+        },
+        {
+          "item": "Olive Oil",
+          "quantity": "1 tablespoon"
         }
       ],
-      "recipe": [
-        "Cook quinoa according to package instructions.",
-        "Heat olive oil in a pan over medium heat.",
-        "Add tofu and cook until golden brown.",
-        "Add mixed vegetables and stir fry until cooked.",
-        "Add cooked quinoa and stir well.",
-        "Top with cheese and serve."
+      "instructions": [
+        "Cook the chicken thighs until golden brown.",
+        "Cook the bulgur as per the instructions on the package.",
+        "In a bowl, mix the cooked chicken, bulgur, and spinach.",
+        "Drizzle with olive oil before serving."
+      ],
+      "nutritional_info": {
+        "protein": "30 grams",
+        "carbs": "40 grams",
+        "fat": "15 grams",
+        "calories": "400 kcal"
+      }
+    },
+    {
+      "meal_name": "Protein-Packed Breakfast",
+      "ingredients": [
+        {
+          "item": "Eggs",
+          "quantity": "2"
+        },
+        {
+          "item": "Whole Wheat Bread",
+          "quantity": "2 slices"
+        },
+        {
+          "item": "Peanut Butter",
+          "quantity": "1 tablespoon"
+        },
+        {
+          "item": "Bananas",
+          "quantity": "1"
+        }
+      ],
+      "instructions": [
+        "Cook the eggs to your preference.",
+        "Toast the whole wheat bread.",
+        "Spread the peanut butter on the toast.",
+        "Slice the banana and place on top of the peanut butter."
       ],
       "nutritional_info": {
         "protein": "20 grams",
         "carbs": "45 grams",
-        "fat": "15 grams"
+        "fat": "18 grams",
+        "calories": "400 kcal"
       }
     },
     {
-      "meal_name": "Greek Yogurt and Fruit Bowl",
+      "meal_name": "Healthy Tuna Salad",
       "ingredients": [
         {
-          "ingredient_name": "Greek Yogurt",
-          "quantity": "1 cup"
+          "item": "Tuna",
+          "quantity": "1 can"
         },
         {
-          "ingredient_name": "Fresh Fruits (Apples, Bananas, Berries)",
-          "quantity": "1 cup"
+          "item": "Greek Yogurt",
+          "quantity": "2 tablespoons"
         },
         {
-          "ingredient_name": "Almonds",
-          "quantity": "10 pieces"
+          "item": "Apples",
+          "quantity": "1"
+        },
+        {
+          "item": "Almonds",
+          "quantity": "10 grams"
         }
       ],
-      "recipe": [
-        "Place Greek yogurt in a bowl.",
-        "Top with fresh fruits and almonds.",
-        "Serve immediately."
+      "instructions": [
+        "Drain the tuna and place in a bowl.",
+        "Add the Greek yogurt to the tuna and mix well.",
+        "Dice the apple and add to the bowl.",
+        "Chop the almonds and sprinkle on top."
       ],
       "nutritional_info": {
-        "protein": "20 grams",
-        "carbs": "30 grams",
-        "fat": "10 grams"
+        "protein": "25 grams",
+        "carbs": "15 grams",
+        "fat": "10 grams",
+        "calories": "250 kcal"
       }
     },
     {
-      "meal_name": "Avocado and Chickpea Salad",
+      "meal_name": "Sweet Potato and Lentil Curry",
       "ingredients": [
         {
-          "ingredient_name": "Avocados",
-          "quantity": "1 piece"
+          "item": "Sweet Potatoes",
+          "quantity": "200 grams"
         },
         {
-          "ingredient_name": "Chickpeas",
-          "quantity": "1 cup"
+          "item": "Lentils",
+          "quantity": "100 grams"
         },
         {
-          "ingredient_name": "Tomatoes",
-          "quantity": "1 piece"
+          "item": "Olive Oil",
+          "quantity": "1 tablespoon"
         },
         {
-          "ingredient_name": "Cucumbers",
-          "quantity": "1 piece"
-        },
-        {
-          "ingredient_name": "Bell Peppers",
-          "quantity": "1 piece"
-        },
-        {
-          "ingredient_name": "Olive Oil",
+          "item": "Greek Yogurt",
           "quantity": "1 tablespoon"
         }
       ],
-      "recipe": [
-        "Chop avocados, tomatoes, cucumbers, and bell peppers into small pieces.",
-        "Mix chopped vegetables and chickpeas in a bowl.",
-        "Drizzle with olive oil and toss well.",
-        "Serve immediately."
+      "instructions": [
+        "Peel and dice the sweet potatoes.",
+        "Cook the lentils as per the instructions on the package.",
+        "In a pan, heat the olive oil and add the sweet potatoes.",
+        "Once the sweet potatoes are cooked, add the lentils and mix well.",
+        "Serve with a dollop of Greek yogurt on top."
+      ],
+      "nutritional_info": {
+        "protein": "18 grams",
+        "carbs": "60 grams",
+        "fat": "10 grams",
+        "calories": "400 kcal"
+      }
+    },
+    {
+      "meal_name": "Broccoli and Almond Stir Fry",
+      "ingredients": [
+        {
+          "item": "Broccoli",
+          "quantity": "200 grams"
+        },
+        {
+          "item": "Almonds",
+          "quantity": "20 grams"
+        },
+        {
+          "item": "Olive Oil",
+          "quantity": "1 tablespoon"
+        },
+        {
+          "item": "Brown Rice",
+          "quantity": "100 grams"
+        }
+      ],
+      "instructions": [
+        "Cook the brown rice as per the instructions on the package.",
+        "In a pan, heat the olive oil and add the broccoli.",
+        "Once the broccoli is cooked, add the almonds and stir fry for a few minutes.",
+        "Serve the stir fry over the brown rice."
+      ],
+      "nutritional_info": {
+        "protein": "15 grams",
+        "carbs": "45 grams",
+        "fat": "15 grams",
+        "calories": "350 kcal"
+      }
+    },
+    {
+      "meal_name": "Blueberry and Banana Smoothie",
+      "ingredients": [
+        {
+          "item": "Blueberries",
+          "quantity": "100 grams"
+        },
+        {
+          "item": "Bananas",
+          "quantity": "1"
+        },
+        {
+          "item": "Almond Milk",
+          "quantity": "200 ml"
+        },
+        {
+          "item": "Greek Yogurt",
+          "quantity": "2 tablespoons"
+        }
+      ],
+      "instructions": [
+        "Place all the ingredients in a blender.",
+        "Blend until smooth.",
+        "Serve chilled."
       ],
       "nutritional_info": {
         "protein": "10 grams",
-        "carbs": "40 grams",
-        "fat": "20 grams"
+        "carbs": "45 grams",
+        "fat": "5 grams",
+        "calories": "250 kcal"
+      }
+    },
+    {
+      "meal_name": "Cottage Cheese and Apple Snack",
+      "ingredients": [
+        {
+          "item": "Cottage Cheese",
+          "quantity": "100 grams"
+        },
+        {
+          "item": "Apples",
+          "quantity": "1"
+        },
+        {
+          "item": "Almonds",
+          "quantity": "10 grams"
+        }
+      ],
+      "instructions": [
+        "Slice the apple.",
+        "Serve the apple slices with the cottage cheese.",
+        "Sprinkle the almonds on top."
+      ],
+      "nutritional_info": {
+        "protein": "15 grams",
+        "carbs": "20 grams",
+        "fat": "5 grams",
+        "calories": "200 kcal"
       }
     }
   ]
