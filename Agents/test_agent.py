@@ -53,7 +53,7 @@ def retrieve_nutrition_information() -> Dict[str, Any]:
 
         try:
             # Make the POST request to get nutrition data
-            response = requests.post(url, json={"name": ["Spanakopita", "Beans and brown rice", "Bread, whole wheat", "Almond milk, chocolate", "Yogurt, Greek, with oats", "Soup, miso or tofu", "Classic mixed vegetables, frozen, cooked with oil", "Fruit flavored drink, diet", "Spinach, raw", "Tomatoes, raw", "Cucumber, cooked", "Avocado, raw", "Olive oil", "Almonds, salted", "Chickpeas, from canned, fat added", "Black beans, from canned, fat added", "Eggnog", "Cheese, Cheddar", "Hummus, plain", "Pasta, whole grain, cooked"]}, headers={'Content-type': "application/json"})  # Pass the dictionary directly
+            response = requests.post(url, json=data)  # Pass the dictionary directly
             response.raise_for_status()  # Raise an exception for HTTP errors
             return response.json()  # Return parsed JSON data
         except requests.exceptions.RequestException as e:

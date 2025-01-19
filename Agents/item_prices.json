@@ -1,0 +1,146 @@
+{
+  "items": [
+    {
+      "name": "Quinoa",
+      "quantity": "1 kg",
+      "price": 0.67,
+      "total_price": 3.99,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Quinoa+Flax+Bread"
+    },
+    {
+      "name": "Brown Rice",
+      "quantity": "1 kg",
+      "price": 0.3,
+      "total_price": 5.99,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Thai+Hom+Mali+Brown+Jasmine+Rice"
+    },
+    {
+      "name": "Whole Wheat Bread",
+      "quantity": "1 loaf",
+      "price": 0.29,
+      "total_price": 1.99,
+      "url": "https://www.nofrills.ca/en/search?search-bar=100%+Whole+Wheat+Bread"
+    },
+    {
+      "name": "Almond Milk",
+      "quantity": "2 liters",
+      "price": 0.21,
+      "total_price": 4.0,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Almond+Beverage,+Unsweetened+Original"
+    },
+    {
+      "name": "Greek Yogurt",
+      "quantity": "1 kg",
+      "price": 0.67,
+      "total_price": 5.0,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Plain+Greek+Yogurt+0%"
+    },
+    {
+      "name": "Tofu",
+      "quantity": "500g",
+      "price": 0.55,
+      "total_price": 2.5,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Extra+Firm+Tofu"
+    },
+    {
+      "name": "Mixed Vegetables",
+      "quantity": "2 kg",
+      "price": 0.27,
+      "total_price": 5.49,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Mixed+Vegetables"
+    },
+    {
+      "name": "Mixed Berries",
+      "quantity": "1 kg",
+      "price": 0.14,
+      "total_price": 5.99,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Strawberry+Bubly"
+    },
+    {
+      "name": "Bananas",
+      "quantity": "1 bunch",
+      "price": 1.1,
+      "total_price": 2.4,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Organic+Bananas,+Bunch"
+    },
+    {
+      "name": "Apples",
+      "quantity": "1 kg",
+      "price": 0.24,
+      "total_price": 2.01,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Honeycrisp+Apples"
+    },
+    {
+      "name": "Oranges",
+      "quantity": "1 kg",
+      "price": 0.31,
+      "total_price": 7.49,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Orange+Bottles"
+    },
+    {
+      "name": "Spinach",
+      "quantity": "500g",
+      "price": 1.27,
+      "total_price": 5.49,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Spinach+Dip"
+    },
+    {
+      "name": "Tomatoes",
+      "quantity": "1 kg",
+      "price": 0.45,
+      "total_price": 4.49,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Tomato+Ketchup"
+    },
+    {
+      "name": "Cucumbers",
+      "quantity": "500g",
+      "price": 0.8,
+      "total_price": 5.99,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Cucumbers+11+count"
+    },
+    {
+      "name": "Avocados",
+      "quantity": "4 pieces",
+      "price": 0.59,
+      "total_price": 8.0,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Naturally+Imperfect+Avocados,+3+lb+Bag"
+    },
+    {
+      "name": "Eggs",
+      "quantity": "1 dozen",
+      "price": 0.32,
+      "total_price": 9.65,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Large+Size+Eggs"
+    },
+    {
+      "name": "Cheese",
+      "quantity": "500g",
+      "price": 1.43,
+      "total_price": 9.99,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Farmer's+Marble+Cheese"
+    },
+    {
+      "name": "Olive Oil",
+      "quantity": "1 liter",
+      "price": 0.82,
+      "total_price": 6.99,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Margarine+with+Olive+Oil"
+    },
+    {
+      "name": "Almonds",
+      "quantity": "200g",
+      "price": 2.0,
+      "total_price": 2.0,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Slivered+Almonds"
+    },
+    {
+      "name": "Chickpeas",
+      "quantity": "1 kg",
+      "price": 0.28,
+      "total_price": 1.5,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Chickpeas"
+    }
+  ],
+  "total_price": 100.95,
+  "budget": "$100.0"
+}

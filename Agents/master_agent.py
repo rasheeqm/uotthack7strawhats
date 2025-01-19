@@ -300,6 +300,37 @@ Output must be valid JSON with this structure:
 
 def recipe_generator_node(state: MessagesState) -> MessagesState:
     """Generate recipes based on available ingredients and user profile"""
+    url = "http://127.0.0.1:8000/grocery/grocery-list"
+
+    try:
+        with open('item_prices.json', 'r') as file:
+            data = json.load(file)
+            data = [{"ingredient_name": datum["name"], "price": datum["total_price"], "quantity": datum['quantity']} for datum in data['items']]
+            data = {"groceries": data}
+        # Make the POST request to get nutrition data
+            response = requests.post(url, json=data)  # Pass the dictionary directly
+            response.raise_for_status()  # Raise an exception for HTTP errors
+            # return response.json()  # Return parsed JSON data
+    except requests.exceptions.RequestException as e:
+        print(f"Error during API call: {e}")
+    except (json.JSONDecodeError, FileNotFoundError) as e:
+        print(f"Error reading the JSON file: {e}")
+
+    url = "http://127.0.0.1:8000/meals/meal"
+
+    try:
+        with open('/Users/rohitshelke/Desktop/Work/Projects/uotthack7strawhats/meals.json', 'r') as file:
+            data = json.load(file)
+            data = data["recipes"]
+        # Make the POST request to get nutrition data
+            for datum in data: 
+                response = requests.post(url, json=datum)  # Pass the dictionary directly
+                response.raise_for_status()  # Raise an exception for HTTP errors
+            # return response.json()  # Return parsed JSON data
+    except requests.exceptions.RequestException as e:
+        print(f"Error during API call: {e}")
+    except (json.JSONDecodeError, FileNotFoundError) as e:
+        print(f"Error reading the JSON file: {e}")
     try:
         # Read available ingredients from item_prices.json
         with open('item_prices.json', 'r') as f:

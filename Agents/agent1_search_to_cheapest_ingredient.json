@@ -1,0 +1,224 @@
+{
+    "ingredients": [
+        {
+            "title": "Quinoa Flax Bread",
+            "subtitle": "Country Harvest",
+            "prices": "$3.99",
+            "unit_size": "600 g",
+            "unit_price": "$0.67 / 100g",
+            "numeric_unit_price": 0.67,
+            "name": "Quinoa",
+            "price": 0.67,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Quinoa+Flax+Bread"
+        },
+        {
+            "title": "Thai Hom Mali Brown Jasmine Rice",
+            "subtitle": "Rooster",
+            "prices": "$5.99",
+            "unit_size": "2 kg",
+            "unit_price": "$0.30 / 100g",
+            "numeric_unit_price": 0.3,
+            "name": "Brown Rice",
+            "price": 0.3,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Thai+Hom+Mali+Brown+Jasmine+Rice"
+        },
+        {
+            "title": "100% Whole Wheat Bread",
+            "subtitle": "No Name",
+            "prices": "$1.99",
+            "unit_size": "675 g",
+            "unit_price": "$0.29 / 100g",
+            "numeric_unit_price": 0.29,
+            "name": "Whole Wheat Bread",
+            "price": 0.29,
+            "url": "https://www.nofrills.ca/en/search?search-bar=100%+Whole+Wheat+Bread"
+        },
+        {
+            "title": "Almond Beverage, Unsweetened Original",
+            "subtitle": "Earth's Own",
+            "prices": "$4.00",
+            "unit_size": "1.89 l",
+            "unit_price": "$0.21 / 100ml",
+            "numeric_unit_price": 0.21,
+            "name": "Almond Milk",
+            "price": 0.21,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Almond+Beverage,+Unsweetened+Original"
+        },
+        {
+            "title": "Plain Greek Yogurt 0%",
+            "subtitle": "President's Choice",
+            "prices": "$5.00",
+            "unit_size": "750 g",
+            "unit_price": "$0.67 / 100g",
+            "numeric_unit_price": 0.67,
+            "name": "Greek Yogurt",
+            "price": 0.67,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Plain+Greek+Yogurt+0%"
+        },
+        {
+            "title": "Extra Firm Tofu",
+            "subtitle": "Rooster",
+            "prices": "$2.50",
+            "unit_size": "454 g",
+            "unit_price": "$0.55 / 100g",
+            "numeric_unit_price": 0.55,
+            "name": "Tofu",
+            "price": 0.55,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Extra+Firm+Tofu"
+        },
+        {
+            "title": "Mixed Vegetables",
+            "subtitle": "No Name",
+            "prices": "$5.49",
+            "unit_size": "2 kg",
+            "unit_price": "$0.27 / 100g",
+            "numeric_unit_price": 0.27,
+            "name": "Mixed Vegetables",
+            "price": 0.27,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Mixed+Vegetables"
+        },
+        {
+            "title": "Strawberry Bubly",
+            "subtitle": "Bubly Sparkling Water",
+            "prices": "$5.99",
+            "unit_size": "12x355.0 ml",
+            "unit_price": "$0.14 / 100ml",
+            "numeric_unit_price": 0.14,
+            "name": "Mixed Berries",
+            "price": 0.14,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Strawberry+Bubly"
+        },
+        {
+            "title": "Organic Bananas, Bunch",
+            "subtitle": "PC Organics",
+            "prices": "$2.40",
+            "unit_size": "$2.18/1kg $0.99/1lb",
+            "unit_price": "$1.10 / each",
+            "numeric_unit_price": 1.1,
+            "name": "Bananas",
+            "price": 1.1,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Organic+Bananas,+Bunch"
+        },
+        {
+            "title": "Honeycrisp Apples",
+            "subtitle": "",
+            "prices": "$2.01",
+            "unit_size": "$8.36/1kg $3.79/1lb",
+            "unit_price": "$0.24 / each",
+            "numeric_unit_price": 0.24,
+            "name": "Apples",
+            "price": 0.24,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Honeycrisp+Apples"
+        },
+        {
+            "title": "Orange Bottles",
+            "subtitle": "FANTA",
+            "prices": "$7.49",
+            "unit_size": "8x300.0 ml",
+            "unit_price": "$0.31 / 100ml",
+            "numeric_unit_price": 0.31,
+            "name": "Oranges",
+            "price": 0.31,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Orange+Bottles"
+        },
+        {
+            "title": "Spinach Dip",
+            "subtitle": "Tostitos",
+            "prices": "$5.49",
+            "unit_size": "432 g",
+            "unit_price": "$1.27 / 100g",
+            "numeric_unit_price": 1.27,
+            "name": "Spinach",
+            "price": 1.27,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Spinach+Dip"
+        },
+        {
+            "title": "Tomato Ketchup",
+            "subtitle": "Frenchs",
+            "prices": "$4.49",
+            "unit_size": "1 l",
+            "unit_price": "$0.45 / 100ml",
+            "numeric_unit_price": 0.45,
+            "name": "Tomatoes",
+            "price": 0.45,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Tomato+Ketchup"
+        },
+        {
+            "title": "Cucumbers 11 count",
+            "subtitle": "Farmer's Market",
+            "prices": "$5.99",
+            "unit_size": "750 g",
+            "unit_price": "$0.80 / 100g",
+            "numeric_unit_price": 0.8,
+            "name": "Cucumbers",
+            "price": 0.8,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Cucumbers+11+count"
+        },
+        {
+            "title": "Naturally Imperfect Avocados, 3 lb Bag",
+            "subtitle": "No Name",
+            "prices": "$8.00",
+            "unit_size": "1.36 kg",
+            "unit_price": "$0.59 / 100g",
+            "numeric_unit_price": 0.59,
+            "name": "Avocados",
+            "price": 0.59,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Naturally+Imperfect+Avocados,+3+lb+Bag"
+        },
+        {
+            "title": "Large Size Eggs",
+            "subtitle": "No Name",
+            "prices": "$9.65",
+            "unit_size": "30 ea",
+            "unit_price": "$0.32 / each",
+            "numeric_unit_price": 0.32,
+            "name": "Eggs",
+            "price": 0.32,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Large+Size+Eggs"
+        },
+        {
+            "title": "Farmer's Marble Cheese",
+            "subtitle": "No Name",
+            "prices": "$9.99",
+            "unit_size": "700 g",
+            "unit_price": "$1.43 / 100g",
+            "numeric_unit_price": 1.43,
+            "name": "Cheese",
+            "price": 1.43,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Farmer's+Marble+Cheese"
+        },
+        {
+            "title": "Margarine with Olive Oil",
+            "subtitle": "Becel",
+            "prices": "$6.99",
+            "unit_size": "850 g",
+            "unit_price": "$0.82 / 100g",
+            "numeric_unit_price": 0.82,
+            "name": "Olive Oil",
+            "price": 0.82,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Margarine+with+Olive+Oil"
+        },
+        {
+            "title": "Slivered Almonds",
+            "subtitle": "No Name",
+            "prices": "$2.00",
+            "unit_size": "100 g",
+            "unit_price": "$2.00 / 100g",
+            "numeric_unit_price": 2.0,
+            "name": "Almonds",
+            "price": 2.0,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Slivered+Almonds"
+        },
+        {
+            "title": "Chickpeas",
+            "subtitle": "No Name",
+            "prices": "$1.50",
+            "unit_size": "540 ml",
+            "unit_price": "$0.28 / 100ml",
+            "numeric_unit_price": 0.28,
+            "name": "Chickpeas",
+            "price": 0.28,
+            "url": "https://www.nofrills.ca/en/search?search-bar=Chickpeas"
+        }
+    ]
+}

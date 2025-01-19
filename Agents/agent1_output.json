@@ -1,0 +1,85 @@
+{
+  "items": [
+    {
+      "name": "Quinoa",
+      "quantity": "1 kg"
+    },
+    {
+      "name": "Brown Rice",
+      "quantity": "1 kg"
+    },
+    {
+      "name": "Whole Wheat Bread",
+      "quantity": "1 loaf"
+    },
+    {
+      "name": "Almond Milk",
+      "quantity": "2 liters"
+    },
+    {
+      "name": "Greek Yogurt",
+      "quantity": "1 kg"
+    },
+    {
+      "name": "Tofu",
+      "quantity": "500g"
+    },
+    {
+      "name": "Mixed Vegetables",
+      "quantity": "2 kg"
+    },
+    {
+      "name": "Mixed Berries",
+      "quantity": "1 kg"
+    },
+    {
+      "name": "Bananas",
+      "quantity": "1 bunch"
+    },
+    {
+      "name": "Apples",
+      "quantity": "1 kg"
+    },
+    {
+      "name": "Oranges",
+      "quantity": "1 kg"
+    },
+    {
+      "name": "Spinach",
+      "quantity": "500g"
+    },
+    {
+      "name": "Tomatoes",
+      "quantity": "1 kg"
+    },
+    {
+      "name": "Cucumbers",
+      "quantity": "500g"
+    },
+    {
+      "name": "Avocados",
+      "quantity": "4 pieces"
+    },
+    {
+      "name": "Eggs",
+      "quantity": "1 dozen"
+    },
+    {
+      "name": "Cheese",
+      "quantity": "500g"
+    },
+    {
+      "name": "Olive Oil",
+      "quantity": "1 liter"
+    },
+    {
+      "name": "Almonds",
+      "quantity": "200g"
+    },
+    {
+      "name": "Chickpeas",
+      "quantity": "1 kg"
+    }
+  ],
+  "budget": "$100.0"
+}
