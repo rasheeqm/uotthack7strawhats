@@ -1,85 +1,85 @@
 {
   "items": [
     {
-      "name": "Chicken breast",
-      "quantity": "2 lbs"
+      "name": "Quinoa",
+      "quantity": "1 kg"
     },
     {
-      "name": "Brown rice",
-      "quantity": "1 lb"
+      "name": "Brown Rice",
+      "quantity": "1 kg"
     },
     {
-      "name": "Broccoli",
-      "quantity": "1 lb"
-    },
-    {
-      "name": "Carrots",
-      "quantity": "1 lb"
-    },
-    {
-      "name": "Bananas",
-      "quantity": "6 pieces"
-    },
-    {
-      "name": "Apples",
-      "quantity": "6 pieces"
-    },
-    {
-      "name": "Almond milk",
-      "quantity": "1 gallon"
-    },
-    {
-      "name": "Whole grain bread",
+      "name": "Whole Wheat Bread",
       "quantity": "1 loaf"
+    },
+    {
+      "name": "Almond Milk",
+      "quantity": "2 liters"
+    },
+    {
+      "name": "Greek Yogurt",
+      "quantity": "500g"
+    },
+    {
+      "name": "Tofu",
+      "quantity": "1 kg"
+    },
+    {
+      "name": "Mixed Vegetables (frozen)",
+      "quantity": "1 kg"
+    },
+    {
+      "name": "Fresh Fruits (apples, bananas, oranges)",
+      "quantity": "2 kg"
+    },
+    {
+      "name": "Spinach",
+      "quantity": "500g"
+    },
+    {
+      "name": "Tomatoes",
+      "quantity": "1 kg"
+    },
+    {
+      "name": "Cucumbers",
+      "quantity": "1 kg"
+    },
+    {
+      "name": "Avocados",
+      "quantity": "4 pieces"
+    },
+    {
+      "name": "Olive Oil",
+      "quantity": "500 ml"
+    },
+    {
+      "name": "Almonds",
+      "quantity": "200g"
+    },
+    {
+      "name": "Chickpeas (canned)",
+      "quantity": "2 cans"
+    },
+    {
+      "name": "Black Beans (canned)",
+      "quantity": "2 cans"
     },
     {
       "name": "Eggs",
       "quantity": "1 dozen"
     },
     {
-      "name": "Greek yogurt",
-      "quantity": "2 lbs"
-    },
-    {
-      "name": "Oats",
-      "quantity": "1 lb"
-    },
-    {
-      "name": "Peanut butter",
-      "quantity": "1 jar"
-    },
-    {
-      "name": "Canned tuna",
-      "quantity": "4 cans"
-    },
-    {
-      "name": "Olive oil",
-      "quantity": "500 ml"
-    },
-    {
-      "name": "Black beans",
-      "quantity": "2 cans"
-    },
-    {
-      "name": "Frozen mixed berries",
-      "quantity": "1 lb"
-    },
-    {
-      "name": "Spinach",
-      "quantity": "1 bag"
-    },
-    {
       "name": "Cheese",
-      "quantity": "1 lb"
+      "quantity": "500g"
     },
     {
-      "name": "Tomatoes",
-      "quantity": "4 pieces"
+      "name": "Hummus",
+      "quantity": "500g"
     },
     {
-      "name": "Onions",
-      "quantity": "2 pieces"
+      "name": "Whole Grain Pasta",
+      "quantity": "1 kg"
     }
   ],
-  "budget": 100.0
+  "budget": "$100.0"
 }

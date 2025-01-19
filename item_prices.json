@@ -1,139 +1,146 @@
 {
   "items": [
     {
-      "name": "Chicken breast",
-      "quantity": "2 lbs",
-      "price_per_unit": 5.99,
+      "name": "Quinoa",
+      "quantity": "1 kg",
+      "price_per_unit": 0.78,
+      "total_price": 13.99,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Quinoa"
+    },
+    {
+      "name": "Brown Rice",
+      "quantity": "1 kg",
+      "price_per_unit": 0.3,
       "total_price": 5.99,
-      "url": "https://www.walmart.ca/en/search?q=chicken+breast"
+      "url": "https://www.nofrills.ca/en/search?search-bar=Thai+Hom+Mali+Brown+Jasmine+Rice"
     },
     {
-      "name": "Brown rice",
-      "quantity": "1 lb",
-      "price_per_unit": null,
-      "total_price": null,
-      "url": null
-    },
-    {
-      "name": "Broccoli",
-      "quantity": "1 lb",
-      "price_per_unit": 1.99,
+      "name": "Whole Wheat Bread",
+      "quantity": "1 loaf",
+      "price_per_unit": 0.29,
       "total_price": 1.99,
-      "url": "https://www.walmart.ca/en/search?q=broccoli"
+      "url": "https://www.nofrills.ca/en/search?search-bar=100%+Whole+Wheat+Bread"
     },
     {
-      "name": "Carrots",
-      "quantity": "1 lb",
-      "price_per_unit": 1.49,
-      "total_price": 1.49,
-      "url": "https://www.walmart.ca/en/search?q=carrots"
+      "name": "Almond Milk",
+      "quantity": "2 liters",
+      "price_per_unit": 0.21,
+      "total_price": 4.0,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Almond+Beverage,+Unsweetened+Original"
     },
     {
-      "name": "Bananas",
-      "quantity": "6 pieces",
-      "price_per_unit": null,
-      "total_price": null,
-      "url": null
+      "name": "Greek Yogurt",
+      "quantity": "500g",
+      "price_per_unit": 0.67,
+      "total_price": 5.0,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Plain+Greek+Yogurt+0%"
     },
     {
-      "name": "Apples",
-      "quantity": "6 pieces",
-      "price_per_unit": null,
-      "total_price": null,
-      "url": null
+      "name": "Tofu",
+      "quantity": "1 kg",
+      "price_per_unit": 0.55,
+      "total_price": 2.5,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Extra+Firm+Tofu"
     },
     {
-      "name": "Almond milk",
-      "quantity": "1 gallon",
-      "price_per_unit": null,
-      "total_price": null,
-      "url": null
+      "name": "Mixed Vegetables (frozen)",
+      "quantity": "1 kg",
+      "price_per_unit": 0.27,
+      "total_price": 5.49,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Mixed+Vegetables"
+    },
+    {
+      "name": "Fresh Fruits (apples, bananas, oranges)",
+      "quantity": "2 kg",
+      "price_per_unit": 0.18,
+      "total_price": 1.25,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Iced+Tea+Blood+Orange"
+    },
+    {
+      "name": "Spinach",
+      "quantity": "500g",
+      "price_per_unit": 1.05,
+      "total_price": 2.99,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Cello+Spinach"
+    },
+    {
+      "name": "Tomatoes",
+      "quantity": "1 kg",
+      "price_per_unit": 0.12,
+      "total_price": 0.92,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Roma+Tomatoes"
+    },
+    {
+      "name": "Cucumbers",
+      "quantity": "1 kg",
+      "price_per_unit": 0.8,
+      "total_price": 5.99,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Cucumbers+11+count"
+    },
+    {
+      "name": "Avocados",
+      "quantity": "4 pieces",
+      "price_per_unit": 0.59,
+      "total_price": 8.0,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Naturally+Imperfect+Avocados,+3+lb+Bag"
+    },
+    {
+      "name": "Olive Oil",
+      "quantity": "500 ml",
+      "price_per_unit": 1.6,
+      "total_price": 11.99,
+      "url": "https://www.nofrills.ca/en/search?search-bar=100%+Extra+Virgin+Olive+Oil"
+    },
+    {
+      "name": "Almonds",
+      "quantity": "200g",
+      "price_per_unit": 2.0,
+      "total_price": 2.0,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Slivered+Almonds"
+    },
+    {
+      "name": "Chickpeas (canned)",
+      "quantity": "2 cans",
+      "price_per_unit": 0.33,
+      "total_price": 1.79,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Chick+Peas"
+    },
+    {
+      "name": "Black Beans (canned)",
+      "quantity": "2 cans",
+      "price_per_unit": 0.33,
+      "total_price": 1.79,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Black+Beans"
     },
     {
       "name": "Eggs",
       "quantity": "1 dozen",
-      "price_per_unit": 3.99,
-      "total_price": 3.99,
-      "url": "https://www.walmart.ca/en/search?q=eggs"
-    },
-    {
-      "name": "Bread",
-      "quantity": "1 loaf",
-      "price_per_unit": null,
-      "total_price": null,
-      "url": null
-    },
-    {
-      "name": "Peanut butter",
-      "quantity": "1 jar",
-      "price_per_unit": null,
-      "total_price": null,
-      "url": null
-    },
-    {
-      "name": "Jelly",
-      "quantity": "1 jar",
-      "price_per_unit": null,
-      "total_price": null,
-      "url": null
-    },
-    {
-      "name": "Cereal",
-      "quantity": "1 box",
-      "price_per_unit": null,
-      "total_price": null,
-      "url": null
+      "price_per_unit": 0.32,
+      "total_price": 9.65,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Large+Size+Eggs"
     },
     {
       "name": "Cheese",
-      "quantity": "1 lb",
-      "price_per_unit": 4.49,
-      "total_price": 4.49,
-      "url": "https://www.walmart.ca/en/search?q=cheese"
+      "quantity": "500g",
+      "price_per_unit": 1.43,
+      "total_price": 9.99,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Farmer's+Marble+Cheese"
     },
     {
-      "name": "Pasta",
-      "quantity": "1 lb",
-      "price_per_unit": 1.79,
-      "total_price": 1.79,
-      "url": "https://www.walmart.ca/en/search?q=pasta"
+      "name": "Hummus",
+      "quantity": "500g",
+      "price_per_unit": 1.43,
+      "total_price": 6.5,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Hummus+Chickpea+Dip+And+Spread"
     },
     {
-      "name": "Tomato sauce",
-      "quantity": "1 jar",
-      "price_per_unit": null,
-      "total_price": null,
-      "url": null
-    },
-    {
-      "name": "Tuna",
-      "quantity": "4 cans",
-      "price_per_unit": null,
-      "total_price": null,
-      "url": null
-    },
-    {
-      "name": "Olive oil",
-      "quantity": "500 ml",
-      "price_per_unit": 7.99,
-      "total_price": 7.99,
-      "url": "https://www.walmart.ca/en/search?q=olive+oil"
-    },
-    {
-      "name": "Salt",
-      "quantity": "1 pack",
-      "price_per_unit": null,
-      "total_price": null,
-      "url": null
-    },
-    {
-      "name": "Pepper",
-      "quantity": "1 pack",
-      "price_per_unit": null,
-      "total_price": null,
-      "url": null
+      "name": "Whole Grain Pasta",
+      "quantity": "1 kg",
+      "price_per_unit": 0.4,
+      "total_price": 1.5,
+      "url": "https://www.nofrills.ca/en/search?search-bar=Whole+Grains,+Rotini+Pasta"
     }
   ],
-  "total_price": 27.730000000000004,
-  "budget": 100.0
+  "total_price": 103.32000000000002,
+  "budget": "$100.0"
 }

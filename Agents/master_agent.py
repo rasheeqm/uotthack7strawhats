@@ -176,8 +176,11 @@ def find_cheapest():
                     numeric_part = ''.join(filter(str.isdigit, quantity))
                     quantity = float(numeric_part) if numeric_part else 1
                 
-                item_total = item_data['price']
-                
+                # Calculate cost
+                val = float(item_data['prices'].split("$")[1])  # Extract the number part and convert it to float
+                print(f"Cost of {item_data['name']} is {val}")
+                item_total = val
+
                 results.append({
                     'name': item['name'],
                     'quantity': item['quantity'],
@@ -455,7 +458,7 @@ if __name__ == "__main__":
         activity_level="moderate",
         goal="weight_loss",
         medical_conditions=["none"],
-        budget=20.0
+        budget=100.0
     )
     
     run_grocery_workflow(user_profile)
