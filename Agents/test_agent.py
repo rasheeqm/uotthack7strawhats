@@ -1,61 +1,68 @@
-# First we initialize the model we want to use.
-from langchain_openai import ChatOpenAI
-# from langchain_ollama import ChatOllama
-# from langchain import hub
-# prompt = hub.pull("hwchase17/react")
-# model = ChatOllama(
-#     model = "llama3.2:latest",
-#     temperature = 0.8,
-#     # other params ...
-# )
-import getpass
-import os
+import json
+import requests
+from typing import Dict, Any
+from sentence_transformers import SentenceTransformer
+import chromadb
 
+def search_chromadb(query, persist_directory="chroma_persistence", collection_name="descriptions_collection"):
+    """
+    Searches ChromaDB for the given query and returns the top result.
+    """
+    # Step 1: Reopen the ChromaDB client
+    client = chromadb.PersistentClient(path="chroma")
 
-def _set_env(var: str):
-    if not os.environ.get(var):
-        os.environ[var] = getpass.getpass(f"{var}: ")
+    # Step 2: Access the existing collection
+    collection = client.get_collection(name=collection_name)
 
+    # Step 3: Generate an embedding for the query
+    model = SentenceTransformer("all-MiniLM-L6-v2")  # Use the same model as during storage
+    query_embedding = model.encode([query], convert_to_numpy=True)
 
-_set_env("OPENAI_API_KEY")
-model = ChatOpenAI(model="gpt-4o", temperature=0)
+    # Step 4: Perform the query
+    results = collection.query(
+        query_embeddings=query_embedding.tolist(),
+        n_results=1  # Number of results to return
+    )
 
+    # Return the top document
+    return results
 
-# For this tutorial we will use custom tool that returns pre-defined values for weather in two cities (NYC & SF)
+def retrieve_nutrition_information() -> Dict[str, Any]:
+    """
+    Retrieve Nutrition Information from the database for items in the price list.
+    Returns a dictionary containing nutrition data for all items.
+    """
+    try:
+        # Read the price list JSON
+        with open('item_prices.json', 'r') as f:
+            price_data = json.load(f)
+        
+        # Extract all item names from the price list
+        item_names = [item['name'] for item in price_data.get('items', [])]
+        
+        # Search each item name using search_chromadb
+        searched_names = [str(search_chromadb(item_name)['documents'][0][0]) for item_name in item_names]
+        print("Searched Names:", searched_names)
 
-from typing import Literal
+        # Prepare the request to the nutrition API
+        url = "http://127.0.0.1:8000/nutrition/nutrition"
+        data = {
+            "name": searched_names
+        }
+        print("JSON Payload:", data)  # Debugging the request payload
 
-from langchain_core.tools import tool
+        try:
+            # Make the POST request to get nutrition data
+            response = requests.post(url, json={"name": ["Spanakopita", "Beans and brown rice", "Bread, whole wheat", "Almond milk, chocolate", "Yogurt, Greek, with oats", "Soup, miso or tofu", "Classic mixed vegetables, frozen, cooked with oil", "Fruit flavored drink, diet", "Spinach, raw", "Tomatoes, raw", "Cucumber, cooked", "Avocado, raw", "Olive oil", "Almonds, salted", "Chickpeas, from canned, fat added", "Black beans, from canned, fat added", "Eggnog", "Cheese, Cheddar", "Hummus, plain", "Pasta, whole grain, cooked"]}, headers={'Content-type': "application/json"})  # Pass the dictionary directly
+            response.raise_for_status()  # Raise an exception for HTTP errors
+            return response.json()  # Return parsed JSON data
+        except requests.exceptions.RequestException as e:
+            print(f"Error during API call: {e}")
+            return {}
+    except (json.JSONDecodeError, FileNotFoundError) as e:
+        print(f"Error reading the JSON file: {e}")
+        return {}
 
-
-@tool
-def get_weather(city: Literal["nyc", "sf"]):
-    """Use this to get weather information."""
-    if city == "nyc":
-        return "It might be cloudy in nyc"
-    elif city == "sf":
-        return "It's always sunny in sf"
-    else:
-        raise AssertionError("Unknown city")
-
-
-tools = [get_weather]
-
-
-# Define the graph
-
-from langgraph.prebuilt import create_react_agent
-
-graph = create_react_agent(model, tools=tools)
-
-
-def print_stream(stream):
-    for s in stream:
-        message = s["messages"][-1]
-        if isinstance(message, tuple):
-            print(message)
-        else:
-            message.pretty_print()
-
-inputs = {"messages": [("user", "what is the weather in sf")]}
-print_stream(graph.stream(inputs, stream_mode="values"))
+if __name__ == "__main__":
+    result = retrieve_nutrition_information()
+    print("Nutrition Data:", result)
