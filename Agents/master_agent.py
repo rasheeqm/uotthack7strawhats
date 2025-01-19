@@ -307,7 +307,7 @@ def recipe_generator_node(state: MessagesState) -> MessagesState:
             data = [{"ingredient_name": datum["name"], "price": datum["total_price"], "quantity": datum['quantity']} for datum in data['items']]
             data = {"groceries": data}
         # Make the POST request to get nutrition data
-            response = requests.post(url, json=data)  # Pass the dictionary directly
+            response = requests.post(url, json=data, headers={'Authorization': f"Bearer {token}"})  # Pass the dictionary directly
             response.raise_for_status()  # Raise an exception for HTTP errors
             # return response.json()  # Return parsed JSON data
     except requests.exceptions.RequestException as e:
@@ -323,7 +323,7 @@ def recipe_generator_node(state: MessagesState) -> MessagesState:
             data = data["recipes"]
         # Make the POST request to get nutrition data
             for datum in data: 
-                response = requests.post(url, json=datum)  # Pass the dictionary directly
+                response = requests.post(url, json=datum, headers={'Authorization': f"Bearer {token}"})  # Pass the dictionary directly
                 response.raise_for_status()  # Raise an exception for HTTP errors
             # return response.json()  # Return parsed JSON data
     except requests.exceptions.RequestException as e:
@@ -511,12 +511,14 @@ def route_by_budget(state: MessagesState) -> Literal["grocery_list_generator", "
 #         print(f"Error retrieving nutrition information: {str(e)}")
 #         return None
 
-def run_grocery_workflow(profile: UserProfile):
+def run_grocery_workflow(profile: UserProfile, jwt_token: str):
     """Run the grocery list workflow with user profile"""
     initialize_files()
     
     # Store profile globally for recipe generation
     global current_profile
+    global token
+    token = jwt_token
     current_profile = profile
     
     # Create grocery list agent with profile-based prompt
@@ -594,6 +596,7 @@ def run_grocery_workflow(profile: UserProfile):
 
 if __name__ == "__main__":
     # Example usage
+
     user_profile = UserProfile(
         age=30,
         sex="female",
