@@ -12,7 +12,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 from langgraph.graph import StateGraph, START
 import sys
-from web_search.web_search_v8 import search_grocery_tracker
+from web_search_v8 import search_grocery_tracker
 import requests
 # Initialize OpenAI API key
 if not os.environ.get("OPENAI_API_KEY"):
@@ -146,94 +146,96 @@ The output must be valid JSON with this structure:
 @tool
 def find_cheapest():
     """Read the latest grocery list and find prices for items"""
-    try:
-        print("Reading from agent1_output.json and ingredient data...")
+    pass
+    # try:
+    #     print("Reading from agent1_output.json and ingredient data...")
         
-        # Read the JSON file
-        with open('agent1_output.json', 'r') as f:
-            grocery_list = json.load(f)
+    #     # Read the JSON file
+    #     with open('agent1_output.json', 'r') as f:
+    #         grocery_list = json.load(f)
 
-        # Extract names of the items into a list
-        item_names = [item['name'] for item in grocery_list['items']]
+    #     # Extract names of the items into a list
+    #     item_names = [item['name'] for item in grocery_list['items']]
 
-        # Print the list of names
-        print(item_names)
+    #     # Print the list of names
+    #     print(item_names)
         
-        ingredients_data = load_ingredients_data(item_names)
-        ingredients_dict = {item['name'].lower(): item 
-                          for item in ingredients_data.get('ingredients', [])}
+    #     ingredients_data = load_ingredients_data(item_names)
+    #     ingredients_dict = {item['name'].lower(): item 
+    #                       for item in ingredients_data.get('ingredients', [])}
         
-        results = []
-        total_price = 0
+    #     results = []
+    #     total_price = 0
         
-        for item in grocery_list.get('items', []):
-            item_name = item['name'].lower()
+    #     for item in grocery_list.get('items', []):
+    #         item_name = item['name'].lower()
             
-            if item_name in ingredients_dict:
-                item_data = ingredients_dict[item_name]
-                quantity = item['quantity']
-                if isinstance(quantity, str):
-                    numeric_part = ''.join(filter(str.isdigit, quantity))
-                    quantity = float(numeric_part) if numeric_part else 1
+    #         if item_name in ingredients_dict:
+    #             item_data = ingredients_dict[item_name]
+    #             quantity = item['quantity']
+    #             if isinstance(quantity, str):
+    #                 numeric_part = ''.join(filter(str.isdigit, quantity))
+    #                 quantity = float(numeric_part) if numeric_part else 1
                 
-                # Calculate cost
-                val = float(item_data['prices'].split("$")[1])  # Extract the number part and convert it to float
-                print(f"Cost of {item_data['name']} is {val}")
-                item_total = val
+    #             # Calculate cost
+    #             val = float(item_data['prices'].split("$")[1])  # Extract the number part and convert it to float
+    #             print(f"Cost of {item_data['name']} is {val}")
+    #             item_total = val
 
-                results.append({
-                    'name': item['name'],
-                    'quantity': item['quantity'],
-                    'price': item_data['price'],
-                    'total_price': item_total,
-                    'url': item_data['url']
-                })
-                total_price += item_total
-            else:
-                results.append({
-                    'name': item['name'],
-                    'quantity': item['quantity'],
-                    'price': None,
-                    'total_price': None,
-                    'url': None
-                })
+    #             results.append({
+    #                 'name': item['name'],
+    #                 'quantity': item['quantity'],
+    #                 'price': item_data['price'],
+    #                 'total_price': item_total,
+    #                 'url': item_data['url']
+    #             })
+    #             total_price += item_total
+    #         else:
+    #             results.append({
+    #                 'name': item['name'],
+    #                 'quantity': item['quantity'],
+    #                 'price': None,
+    #                 'total_price': None,
+    #                 'url': None
+    #             })
         
-        output_data = {
-            'items': results,
-            'total_price': total_price,
-            'budget': grocery_list.get('budget', 0)
-        }
+    #     output_data = {
+    #         'items': results,
+    #         'total_price': total_price,
+    #         'budget': grocery_list.get('budget', 0)
+    #     }
         
-        safe_write_json('item_prices.json', output_data)
-        return output_data
-    except Exception as e:
-        print(f"Error in find_cheapest: {str(e)}")
-        return {"error": str(e)}
+    #     safe_write_json('item_prices.json', output_data)
+    #     return output_data
+    # except Exception as e:
+    #     print(f"Error in find_cheapest: {str(e)}")
+    #     return {"error": str(e)}
 # Grocery List Node
 def grocery_list_node(state: MessagesState) -> Command[Literal["price_checker"]]:
     """Process grocery list generation with user profile considerations"""
-    result = grocery_list_agent.invoke(state)
+    pass
+    # result = grocery_list_agent.invoke(state)
     
-    try:
-        content = result["messages"][-1].content
-        cleaned_content = extract_json_from_response(content)
-        grocery_list = json.loads(cleaned_content)
-        print("Parsed grocery list:", json.dumps(grocery_list, indent=2))
-        safe_write_json('agent1_output.json', grocery_list)
+    # try:
+    #     content = result["messages"][-1].content
+    #     cleaned_content = extract_json_from_response(content)
+    #     grocery_list = json.loads(cleaned_content)
+    #     print("Parsed grocery list:", json.dumps(grocery_list, indent=2))
+    #     safe_write_json('agent1_output.json', grocery_list)
         
-    except Exception as e:
-        print(f"Error in grocery list generation: {e}")
-        return Command(update={"messages": result["messages"]}, goto="price_checker")
+    # except Exception as e:
+    #     print(f"Error in grocery list generation: {e}")
+    #     return Command(update={"messages": result["messages"]}, goto="price_checker")
     
-    result["messages"][-1] = HumanMessage(
-        content=result["messages"][-1].content,
-        name="grocery_list_generator"
-    )
+    # result["messages"][-1] = HumanMessage(
+    #     content=result["messages"][-1].content,
+    #     name="grocery_list_generator"
+    # )
     
-    return Command(
-        update={"messages": result["messages"]},
-        goto="price_checker"
-    )
+    # return Command(
+    #     update={"messages": result["messages"]},
+    #     goto="price_checker"
+    # )
 
 # Price Checker Agent
 price_checker_agent = create_react_agent(
@@ -243,12 +245,16 @@ price_checker_agent = create_react_agent(
 )
 
 def price_checker_node(state: MessagesState) -> MessagesState:
-    result = price_checker_agent.invoke(state)
-    result["messages"][-1] = HumanMessage(
-        content=result["messages"][-1].content,
-        name="price_checker"
-    )
-    return result
+    pass
+    # result = price_checker_agent.invoke(state)
+    # prices_data = safe_read_json('item_prices.json')
+    # print(f"Debug - Price checker result: {json.dumps(prices_data, indent=2)}")
+    # result["messages"][-1] = HumanMessage(
+    #     content=result["messages"][-1].content,
+    #     name="price_checker"
+    # )
+    # return result
+
 def create_recipe_prompt(profile: UserProfile, ingredients: list) -> str:
     return f"""Generate 7 recipes based on these ingredients and user profile:
 
@@ -326,27 +332,34 @@ def recipe_generator_node(state: MessagesState) -> MessagesState:
     except Exception as e:
         print(f"Error in recipe generation: {e}")
         return state
+def clean_price(price_str):
+    """Clean and convert price string to float"""
+    if isinstance(price_str, (int, float)):
+        return float(price_str)
+    if isinstance(price_str, str):
+        cleaned = ''.join(char for char in price_str if char.isdigit() or char == '.')
+        return float(cleaned) if cleaned else 0.0
+    return 0.0
+
 def route_by_budget(state: MessagesState) -> Literal["grocery_list_generator", "recipe_generator", "end"]:
     """Route based on budget comparison"""
     try:
         prices_data = safe_read_json('item_prices.json')
-        
-        def clean_price(price_str):
-            if isinstance(price_str, (int, float)):
-                return float(price_str)
-            if isinstance(price_str, str):
-                cleaned = ''.join(char for char in price_str if char.isdigit() or char == '.')
-                return float(cleaned) if cleaned else 0.0
-            return 0.0
+        print("Debug - Loaded prices data:", json.dumps(prices_data, indent=2))
         
         total_price = clean_price(prices_data.get('total_price', 0))
         budget = clean_price(prices_data.get('budget', 0))
         budget_threshold = budget * 1.10
         
-        if total_price <= budget_threshold:
-            return "recipe_generator"  # Modified to go to recipe generation instead of end
+        print(f"Debug - Total Price: ${total_price}")
+        print(f"Debug - Budget: ${budget}")
+        print(f"Debug - Budget Threshold: ${budget_threshold}")
         
-        # Over budget logic remains the same
+        if total_price <= budget_threshold:
+            print("Debug - Routing to recipe_generator")
+            return "recipe_generator"
+        
+        # Over budget logic
         items = prices_data.get('items', [])
         valid_items = []
         for item in items:
@@ -370,7 +383,8 @@ def route_by_budget(state: MessagesState) -> Literal["grocery_list_generator", "
                     name="budget_router"
                 )
             )
-        return "grocery_list_generator"
+            print("Debug - Routing back to grocery_list_generator due to over budget")
+            return "grocery_list_generator"
             
     except Exception as e:
         print(f"Error in route_by_budget: {e}")
@@ -470,6 +484,7 @@ def run_grocery_workflow(profile: UserProfile):
     # Add edges with conditional routing
     workflow.add_edge(START, "grocery_list_generator")
     workflow.add_edge("grocery_list_generator", "price_checker")
+
     workflow.add_edge("recipe_generator", END)  # Add edge from recipe generator to end
     workflow.add_conditional_edges(
         "price_checker",
