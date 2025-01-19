@@ -1,7 +1,7 @@
 # uotthack7strawhats
 # Affordable Nutritional Meal Planning AI
 
-A real-time AI dietician at your fingertips that creates personalized, budget-friendly meal plans and grocery lists.
+A real-time multi-agent AI dietician, meal planner, and shopper at your fingertips that creates personalized, budget-friendly meal plans and grocery lists.
 
 ## Overview
 
