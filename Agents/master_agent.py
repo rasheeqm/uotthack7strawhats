@@ -256,7 +256,7 @@ def price_checker_node(state: MessagesState) -> MessagesState:
     # return result
 
 def create_recipe_prompt(profile: UserProfile, ingredients: list) -> str:
-    return f"""Generate 7 recipes based on these ingredients and user profile:
+    return f"""Generate 7 recipes based on these ingredients and user profile. Return ONLY valid JSON.
 
 Profile:
 - Age: {profile.age}
@@ -266,13 +266,13 @@ Profile:
 - Goal: {profile.goal}
 Available Ingredients: {', '.join(ingredients)}
 
-Create recipes that:
+Requirements:
 1. Only use the available ingredients
 2. Respect dietary restrictions and allergies
-3. Are suitable for the user's medical conditions
+3. Create recipes suitable for the user's medical conditions
 4. Include detailed nutritional information
 
-Output must be valid JSON with this structure:
+Your response must be ONLY the following JSON structure, with no additional text:
 {{
     "recipes": [
         {{
@@ -283,17 +283,16 @@ Output must be valid JSON with this structure:
                     "quantity": "amount with units"
                 }}
             ],
-            "recipe": [
-                "Step 1...",
-                "Step 2..."
+            "instructions": [
+                "Step 1",
+                "Step 2"
             ],
-            "nutrition_info": [{{
+            "nutritional_info": {{
                 "protein": "X grams",
                 "carbs": "Y grams",
                 "fat": "Z grams",
-                "Calories": "Number in kcal",
-            }}],
-            
+                "calories": "Number in kcal"
+            }}
         }}
     ]
 }}"""
@@ -337,24 +336,54 @@ def recipe_generator_node(state: MessagesState) -> MessagesState:
             price_data = json.load(f)
         ingredients = [item['name'] for item in price_data.get('items', [])]
         
-        # Create recipe generation agent
+        print("Debug - Available ingredients:", ingredients)
+        
+        # Create the prompt first
+        prompt = create_recipe_prompt(current_profile, ingredients)
+        
+        # Create recipe generation agent with the prompt as state_modifier
         recipe_agent = create_react_agent(
             llm,
             tools=[],
-            state_modifier=create_recipe_prompt(current_profile, ingredients)
+            state_modifier=(
+                "You are a recipe generator that creates structured JSON output. "
+                "Always ensure your output is valid JSON with all property names in double quotes. "
+                f"Your task: {prompt}"
+            )
         )
         
+        # Add the request to the state
+        if 'messages' not in state:
+            state['messages'] = []
+        state['messages'].append(
+            HumanMessage(content="Generate recipes based on the provided ingredients and requirements.")
+        )
+        
+        # Generate recipes
         result = recipe_agent.invoke(state)
         
-        # Parse and save recipes
+        print("Debug - Recipe agent raw output:", result["messages"][-1].content)
+        
+        # Extract and parse JSON carefully
         content = result["messages"][-1].content
         cleaned_content = extract_json_from_response(content)
-        recipes = json.loads(cleaned_content)
-        print(recipes)
+        
+        try:
+            recipes = json.loads(cleaned_content)
+        except json.JSONDecodeError as e:
+            print(f"JSON parsing error: {str(e)}")
+            # Provide a basic structure if parsing fails
+            recipes = {
+                "recipes": [],
+                "error": "Failed to generate valid recipes"
+            }
+        
+        print("Debug - Parsed recipes:", json.dumps(recipes, indent=2))
         safe_write_json('meals.json', recipes)
         
+        # Update the message in the state
         result["messages"][-1] = HumanMessage(
-            content=result["messages"][-1].content,
+            content=json.dumps(recipes, indent=2),
             name="recipe_generator"
         )
         
@@ -362,7 +391,9 @@ def recipe_generator_node(state: MessagesState) -> MessagesState:
         
     except Exception as e:
         print(f"Error in recipe generation: {e}")
+        # Return the original state if there's an error
         return state
+
 def clean_price(price_str):
     """Clean and convert price string to float"""
     if isinstance(price_str, (int, float)):
