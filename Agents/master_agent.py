@@ -19,7 +19,7 @@ import requests
 if not os.environ.get("OPENAI_API_KEY"):
     os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter your OpenAI API key: ")
 
-llm = ChatOpenAI(model="gpt-4", temperature=0)
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 
 class UserProfile(BaseModel):
@@ -340,7 +340,7 @@ def recipe_generator_node(state: MessagesState) -> MessagesState:
         print(f"Error during API call: {e}")
     except (json.JSONDecodeError, FileNotFoundError) as e:
         print(f"Error reading the JSON file: {e}")
-        
+
     url = "http://127.0.0.1:8000/grocery/grocery-list"
 
     try:
@@ -650,18 +650,22 @@ Cheers to healthy eating,
 Your Meal Planner AI 🍳🌱"""
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # Example usage
 
-    user_profile = UserProfile(
-        age=30,
-        sex="female",
-        height=165,  # cm
-        weight=65,  # kg
-        diet_preference=["vegetarian"],
-        allergies=["peanuts", "shellfish"],
-        activity_level="moderate",
-        goal="weight_loss",
-        medical_conditions=["none"],
-        budget=100.0,
-    )
+    # user_profile = {
+    #     "username": "rohit",
+    #     "email": "rohit@gmail.com",
+    #     "password": "$2b$12$gJ/fclQuQ1BjCFvdtb.8t.4t.VUs.cjj2FE4tvT4YXdDDJfPu8WI.",
+    #     "age": "23",
+    #     "sex": "Male",
+    #     "height": "159",
+    #     "diet_preference": "Omnivore",
+    #     "allergies": "None",
+    #     "activity_level": "moderate",
+    #     "goal": "weight_loss",
+    #     "medical_conditions": "None",
+    # }
+    # token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyb2hpdCIsImV4cCI6MTczNzMxMDE4M30.FdWbwIUdEJOjDAvj6j0S8KUFTkzhVav9acWuWhBSPYQ"
+    # message = "Give me a week's meal plan according to my goal under $100"
+    # run_grocery_workflow(user_profile, token, message)

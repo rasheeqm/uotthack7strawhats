@@ -22,7 +22,7 @@ async def register_user(user: dict):
         "age": user['age'],
         "sex": user['sex'],
         "height": user['height'],
-        "height": user['height'],
+        "weight": user['weight'],
         "diet_preference": user['diet_preference'],
         "allergies": user['allergies'],
         "activity_level": user['activity_level'],

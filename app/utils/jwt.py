@@ -1,10 +1,13 @@
 from datetime import datetime, timedelta, timezone
 from jose import JWTError, jwt
 from fastapi import HTTPException, status, Depends
-from app.config import SECRET_KEY, ALGORITHM
+import os
 from app.schemas.user import TokenData
 from app.database import db
 from fastapi.security import OAuth2PasswordBearer
+
+SECRET_KEY =  os.environ.get("SECRET_KEY")
+ALGORITHM =  os.environ.get("ALGORITHM")
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 

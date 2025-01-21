@@ -1,85 +1,65 @@
 {
   "items": [
     {
-      "name": "Lentils",
-      "quantity": "2 lbs"
-    },
-    {
-      "name": "Bulgur",
-      "quantity": "5 lbs"
-    },
-    {
-      "name": "Chicken Thighs",
-      "quantity": "2 lbs"
-    },
-    {
-      "name": "Apples",
+      "name": "Chicken Breast",
       "quantity": "2 lbs"
     },
     {
       "name": "Brown Rice",
-      "quantity": "5 lbs"
+      "quantity": "2 lbs"
     },
     {
       "name": "Broccoli",
-      "quantity": "2 lbs"
-    },
-    {
-      "name": "Sweet Potatoes",
-      "quantity": "3 lbs"
-    },
-    {
-      "name": "Bananas",
-      "quantity": "2 lbs"
-    },
-    {
-      "name": "Whole Wheat Bread",
-      "quantity": "2 loaves"
-    },
-    {
-      "name": "Peanut Butter",
-      "quantity": "1 jar"
-    },
-    {
-      "name": "Almond Milk",
-      "quantity": "1 gallon"
-    },
-    {
-      "name": "Greek Yogurt",
-      "quantity": "2 lbs"
-    },
-    {
-      "name": "Eggs",
-      "quantity": "2 dozen"
-    },
-    {
-      "name": "Oats",
-      "quantity": "2 lbs"
+      "quantity": "1 lb"
     },
     {
       "name": "Spinach",
       "quantity": "1 lb"
     },
     {
-      "name": "Tuna",
-      "quantity": "4 cans"
+      "name": "Carrots",
+      "quantity": "1 lb"
+    },
+    {
+      "name": "Eggs",
+      "quantity": "1 dozen"
+    },
+    {
+      "name": "Greek Yogurt (non-fat)",
+      "quantity": "32 oz"
     },
     {
       "name": "Almonds",
-      "quantity": "1 lb"
+      "quantity": "8 oz"
+    },
+    {
+      "name": "Bananas",
+      "quantity": "6 pieces"
+    },
+    {
+      "name": "Apples",
+      "quantity": "4 pieces"
     },
     {
       "name": "Olive Oil",
-      "quantity": "1 bottle"
+      "quantity": "16 oz"
     },
     {
-      "name": "Blueberries",
+      "name": "Whole Wheat Bread",
+      "quantity": "1 loaf"
+    },
+    {
+      "name": "Canned Tuna (in water)",
+      "quantity": "3 cans"
+    },
+    {
+      "name": "Quinoa",
       "quantity": "1 lb"
     },
     {
-      "name": "Cottage Cheese",
-      "quantity": "2 lbs"
+      "name": "Mixed Berries (frozen)",
+      "quantity": "1 lb"
     }
   ],
-  "budget": "$100.0"
+  "budget": 98.5
 }
