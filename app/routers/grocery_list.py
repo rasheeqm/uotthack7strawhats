@@ -15,10 +15,8 @@ async def add_grocery_list(
         pipeline = [
             {
                 "$group": {
-                    "_id": '$user_id',  # Group all documents together
-                    "maxWeek": {
-                        "$max": "$week"
-                    },
+                    "_id": "$user_id",  # Group all documents together
+                    "maxWeek": {"$max": "$week"},
                 }
             }
         ]
@@ -26,11 +24,11 @@ async def add_grocery_list(
         latest_week = 0
         async for week in weeks:
             print(week)
-            if week['_id'] == current_user["_id"]:
+            if week["_id"] == current_user["_id"]:
                 latest_week = week["maxWeek"]
         latest_week += 1
         print(latest_week)
-        grocery_list['week'] = latest_week
+        grocery_list["week"] = latest_week
         # print(latest_week)
         result = await db["grocery_list"].insert_one(grocery_list)
         return {"message": "Grocery list added successfully"}

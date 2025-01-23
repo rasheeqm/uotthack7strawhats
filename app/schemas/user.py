@@ -39,12 +39,7 @@ class User(BaseModel):
         "Very Active",
         "Extremely Active",
     ] = Field(...)
-    goal: Literal[
-        "Weight Loss",
-        "Muscle Gain",
-        "Both",
-        "Stay fit"
-    ] = Field(...)
+    goal: Literal["Weight Loss", "Muscle Gain", "Both", "Stay fit"] = Field(...)
     medical_conditions: str = Field(...)
 
 

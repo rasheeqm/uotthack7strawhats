@@ -2,6 +2,7 @@ from typing import List
 from pydantic import BaseModel, Field
 from bson import ObjectId
 
+
 # Custom Pydantic type for ObjectId
 class PyObjectId(ObjectId):
     @classmethod
@@ -24,13 +25,14 @@ class GroceryItem(BaseModel):
     quantity: str = Field(..., description="Quantity of the ingredient")
     price: float = Field(..., description="Price of the ingredient")
 
+
 class GroceryList(BaseModel):
-    user_id: PyObjectId = Field(..., description="Reference to the user's _id in the users collection")
+    user_id: PyObjectId = Field(
+        ..., description="Reference to the user's _id in the users collection"
+    )
     week: int = Field(..., ge=1, le=52, description="Week number (1-52)")
     groceries: List[GroceryItem] = Field(..., description="List of grocery items")
 
     class Config:
         # Enable JSON encoding of ObjectId
-        json_encoders = {
-            ObjectId: str
-        }
+        json_encoders = {ObjectId: str}

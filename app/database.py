@@ -2,7 +2,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import os
 from pymongo import errors
 
-MONGO_URL =  os.environ.get("MONGO_URL")
+MONGO_URL = os.environ.get("MONGO_URL")
 
 try:
     # Initialize MongoDB connection

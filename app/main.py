@@ -22,6 +22,7 @@ app.include_router(chat.router)
 
 # Initialize database connection
 
+
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the FastAPI Auth System"}
